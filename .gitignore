@@ -1,0 +1,24 @@
+# --- Raw data archives ---------------------------------------------------
+# Large archived raw-data / simulation bundles are kept OUT of version
+# control (they are not working files). .tar.gz simulation bundles ARE
+# tracked intentionally. To force-add a specific zip: `git add -f file.zip`
+*.zip
+
+# --- Python --------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# --- Environments --------------------------------------------------------
+.venv/
+venv/
+env/
+
+# --- OS / editor cruft ---------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# --- Claude Code machine-local settings ----------------------------------
+# (also covered by the global ignore, repeated here so clones stay clean)
+.claude/settings.local.json

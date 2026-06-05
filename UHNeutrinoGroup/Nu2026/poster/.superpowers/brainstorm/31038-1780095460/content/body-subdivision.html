@@ -1,0 +1,162 @@
+<h2>How should the content area subdivide?</h2>
+<p class="subtitle">Title banner / content / footer banner is settled. The question is how the content area itself is structured. (Page shown 4:3 = 48"×36".)</p>
+
+<style>
+.poster-mock {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #FFFFFF;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.poster-mock .banner-top {
+  background: #024731;
+  height: 18%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 9px;
+  letter-spacing: 1px;
+  border-bottom: 4px solid #C8A464;
+}
+.poster-mock .banner-bot {
+  background: #024731;
+  height: 8%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 8px;
+  letter-spacing: 1px;
+  border-top: 4px solid #C8A464;
+}
+.poster-mock .body-area {
+  flex: 1;
+  display: flex;
+  padding: 6px;
+  gap: 6px;
+}
+.poster-mock .col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.poster-mock .blk {
+  flex: 1;
+  background: #fff;
+  border: 2px solid #024731;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  color: #024731;
+}
+.poster-mock .hero {
+  border: 3px solid #C8A464;
+  color: #024731;
+  background: #fff;
+  position: relative;
+}
+.poster-mock .hero::before {
+  content: "★";
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  color: #C8A464;
+  font-size: 12px;
+}
+.mock-note {
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 4px;
+  font-style: italic;
+}
+</style>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="poster-mock">
+        <div class="banner-top">TITLE BANNER</div>
+        <div class="body-area">
+          <div class="col" style="flex: 0.31 1 0;">
+            <div class="blk">Block 1</div>
+            <div class="blk">Block 2</div>
+          </div>
+          <div class="col" style="flex: 0.31 1 0;">
+            <div class="blk">Block 3</div>
+            <div class="blk">Block 4</div>
+          </div>
+          <div class="col" style="flex: 0.34 1 0;">
+            <div class="blk hero">Hero Block 5</div>
+          </div>
+        </div>
+        <div class="banner-bot">FOOTER BANNER</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A · Current (asymmetric 2+2+1)</h3>
+      <p>Col 1 &amp; 2 narrower (0.31w), col 3 wider (0.34w) for hero. Matches today.</p>
+      <p class="mock-note">Pros: preserves editorial intent. Cons: three column widths to tune.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="poster-mock">
+        <div class="banner-top">TITLE BANNER</div>
+        <div class="body-area">
+          <div class="col">
+            <div class="blk">Block 1</div>
+            <div class="blk">Block 2</div>
+          </div>
+          <div class="col">
+            <div class="blk">Block 3</div>
+            <div class="blk">Block 4</div>
+          </div>
+          <div class="col">
+            <div class="blk hero">Hero Block 5</div>
+          </div>
+        </div>
+        <div class="banner-bot">FOOTER BANNER</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B · Symmetric 3-column (equal width)</h3>
+      <p>All three columns equal width. Hero is taller (full-height), not wider.</p>
+      <p class="mock-note">Pros: one column-width parameter. Cons: hero gets less emphasis.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="poster-mock">
+        <div class="banner-top">TITLE BANNER</div>
+        <div class="body-area">
+          <div class="col" style="flex: 0.62 1 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px;">
+            <div class="blk">Block 1</div>
+            <div class="blk">Block 3</div>
+            <div class="blk">Block 2</div>
+            <div class="blk">Block 4</div>
+          </div>
+          <div class="col" style="flex: 0.38 1 0;">
+            <div class="blk hero">Hero Block 5</div>
+          </div>
+        </div>
+        <div class="banner-bot">FOOTER BANNER</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C · Grid panel + hero panel (recommended)</h3>
+      <p>Body is a horizontal split: 2×2 grid on the left, full-height hero on the right.</p>
+      <p class="mock-note">Pros: explicit nesting matches the actual intent — "feature panel + supporting grid." Two parameters: grid/hero split ratio and grid gutter. Hero can be re-emphasized just by changing one ratio.</p>
+    </div>
+  </div>
+</div>
+
+<p style="margin-top:18px; font-size:13px; color:#6b7280;">Click a card to indicate preference, then tell me in the terminal which way you'd like to go and any reservations.</p>
