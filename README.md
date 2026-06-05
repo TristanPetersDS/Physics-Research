@@ -45,10 +45,21 @@ UHNeutrinoGroup/
 - 🚫 Not tracked: large `*.zip` raw-data bundles (see `.gitignore`) and
   machine-local `.claude/settings.local.json`.
 
+## Setup
+```bash
+./setup.sh          # creates .venv, installs requirements.txt, verifies imports
+./setup.sh --system # install into the current Python env instead of a venv
+```
+The script also **checks the two dependencies pip cannot provide**: a system MPI
+(`mpiexec`, required to build `mpi4py`) and a LaTeX toolchain (`pdflatex`, since
+the plot scripts set `text.usetex=True`). It prints the Arch `pacman` commands if
+either is missing — it does not install them for you.
+
+Python stack (see `requirements.txt`): `numpy`, `scipy`, `matplotlib`, `pandas`,
+`tqdm`, `mpi4py`. Verified-working on Python 3.14.3 with Open MPI 5.0.10 and
+TeX Live 2026.
+
 ## Running the code
-No `requirements.txt` exists yet. Dependencies: `numpy`, `scipy`, `matplotlib`,
-`pandas`, `tqdm`, `mpi4py` — plus a **LaTeX toolchain** (the plotting scripts set
-`text.usetex=True`) and a **system MPI** (OpenMPI/MPICH) for `mpi4py`.
 
 **Parallel direction algorithm**
 ```bash
