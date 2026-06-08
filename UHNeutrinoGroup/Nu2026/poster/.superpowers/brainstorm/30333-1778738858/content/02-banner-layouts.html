@@ -1,0 +1,122 @@
+<h2>Title-banner concepts</h2>
+<p class="subtitle">All four shown at A0 landscape (1.414 : 1) — same options translate to 4×3 ft, just slightly squarer. The body shrinks as the banner grows; trade-off is content density vs. presence at a distance.</p>
+
+<style>
+.banner-frame { aspect-ratio: 1.414 / 1; background: #F5F4EE; border: 2px solid #024731; padding: 0; display:flex; flex-direction:column; font-size: 9px; line-height: 1.1; overflow:hidden }
+.banner-frame .gold { background:#C8A464; height: 6px }
+.banner-frame .green { background:#024731; color:white; padding: 8px; }
+.banner-frame .green .ttl { font-weight:bold; font-size: 13px; letter-spacing:0.5px }
+.banner-frame .green .sub { font-style:italic; font-size: 9px; margin-top: 4px; opacity: 0.92 }
+.banner-frame .green .authors { font-size: 8px; margin-top: 6px; opacity: 0.85 }
+.banner-frame .body { flex:1; display:grid; gap:6px; padding:8px; background: #F5F4EE }
+.banner-frame .col { background:#fff; border:1px dashed #024731 }
+.banner-frame .logo { background:#fff; border:1px dashed #C8A464; display:flex; align-items:center; justify-content:center; font-size: 7px; color: #024731 }
+.banner-frame .tldr { background:#fff; border-left: 4px solid #C8A464; padding: 6px 10px; font-style:italic; color:#024731; font-size: 9px }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px }
+.cards .card { padding: 14px }
+.cards .card h3 { margin-top: 0; margin-bottom: 8px }
+.cards .card p { font-size: 13px; margin: 4px 0 10px }
+</style>
+
+<div class="cards">
+
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <h3>Full-width hero banner (~25% height)</h3>
+    <p>Banner spans the full top quarter: logos on the wings, title + authors + venue centered, gold underline + TL;DR strip below it. Body becomes 3 columns.</p>
+    <div class="banner-frame">
+      <div class="green" style="display:grid; grid-template-columns: 1fr 5fr 1fr; gap: 8px; min-height: 24%">
+        <div class="logo" style="border-color: white">UH M&#257;noa<br/>seal</div>
+        <div style="display:flex; flex-direction:column; justify-content:center; text-align:center">
+          <div class="ttl">Enhancing Angular Sensitivity of Segmented Antineutrino Detectors</div>
+          <div class="sub">for Reactor Monitoring Applications</div>
+          <div class="authors">B.C. Crow, M.A.A. Dornfest, J.G. Learned, J.D. Seligman, N.S. Sibert, J.G. Yepez, V.A. Li &nbsp;&middot;&nbsp; UH M&#257;noa &middot; LLNL &nbsp;&middot;&nbsp; Neutrino 2026</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:4px">
+          <div class="logo" style="border-color: white; flex:1">LLNL</div>
+          <div class="logo" style="border-color: white; flex:1">MTV</div>
+        </div>
+      </div>
+      <div class="gold"></div>
+      <div class="tldr" style="margin: 6px 10px">A pattern-matching algorithm that returns rigorous angular uncertainty in the low-event regime &mdash; geometry-agnostic, simulation-driven, the interpretable baseline for ML.</div>
+      <div class="body" style="grid-template-columns: 1fr 1fr 1fr">
+        <div class="col"></div><div class="col"></div><div class="col"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <h3>Banner + hero figure region (~35% height)</h3>
+    <p>Banner is wider <em>and</em> taller: title on the left half, the headline result plot (Paper B Fig. 13) anchored on the right half as a "money panel". 3 narrower columns below carry the story.</p>
+    <div class="banner-frame">
+      <div class="green" style="display:grid; grid-template-columns: 2fr 1.6fr; gap: 12px; min-height: 35%; align-items:center; padding: 10px 14px">
+        <div>
+          <div class="ttl">Enhancing Angular Sensitivity of Segmented Antineutrino Detectors</div>
+          <div class="sub">for Reactor Monitoring Applications</div>
+          <div class="authors">B.C. Crow, M.A.A. Dornfest, J.G. Learned, J.D. Seligman, N.S. Sibert, J.G. Yepez &middot; V.A. Li (LLNL) &nbsp;&middot;&nbsp; Neutrino 2026</div>
+          <div style="display:flex; gap: 6px; margin-top: 8px">
+            <div class="logo" style="border-color: white; flex:1; height: 22px">UH</div>
+            <div class="logo" style="border-color: white; flex:1; height: 22px">LLNL</div>
+            <div class="logo" style="border-color: white; flex:1; height: 22px">MTV</div>
+          </div>
+        </div>
+        <div class="logo" style="border-color: white; background: #fff; color: #024731; height: 92%; align-self:center">Headline result &mdash;<br/>&delta;&vartheta; vs. n<br/>(money plot)</div>
+      </div>
+      <div class="gold"></div>
+      <div class="body" style="grid-template-columns: 1fr 1fr 1fr">
+        <div class="col"></div><div class="col"></div><div class="col"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <h3>Left-anchored title column (~26% width)</h3>
+    <p>The green strip runs vertically on the left as a "spine": title rotated or stacked, authors, logos, TL;DR, even references all live in this strip. Body to the right gets 3 generous columns. Feels modern; very few academic posters do this.</p>
+    <div class="banner-frame" style="flex-direction: row">
+      <div class="green" style="width: 26%; padding: 10px; display:flex; flex-direction:column">
+        <div class="ttl" style="font-size: 11px">Enhancing Angular Sensitivity of Segmented Antineutrino Detectors</div>
+        <div class="sub">for Reactor Monitoring Applications</div>
+        <div class="authors">Crow, Dornfest, Learned, Seligman, Sibert, Yepez (UH) &middot; Li (LLNL)</div>
+        <div style="display:flex; gap: 4px; margin-top: 10px">
+          <div class="logo" style="border-color: white; flex:1; height: 26px; font-size: 6px">UH</div>
+          <div class="logo" style="border-color: white; flex:1; height: 26px; font-size: 6px">LLNL</div>
+        </div>
+        <div class="logo" style="border-color: white; height: 30px; margin-top: 6px; font-size: 6px">MTV</div>
+        <div style="margin-top: auto; font-style:italic; font-size: 7.5px; opacity: 0.85">Neutrino 2026<br/>refs &middot; QR &middot; acks</div>
+      </div>
+      <div style="flex:1; background:#C8A464; width: 4px"></div>
+      <div class="body" style="flex:1; grid-template-columns: 1fr 1fr 1fr">
+        <div class="col"></div><div class="col"></div><div class="col"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="d" onclick="toggleSelect(this)">
+    <div class="letter">D</div>
+    <h3>Banner + TL;DR strip (~30% combined)</h3>
+    <p>Like A, but the TL;DR gets its own promoted band in gold — readable from across the hall. Banner taller still. 3 columns below, denser.</p>
+    <div class="banner-frame">
+      <div class="green" style="display:grid; grid-template-columns: 1fr 5fr 1fr; gap: 8px; min-height: 24%">
+        <div class="logo" style="border-color: white">UH M&#257;noa<br/>seal</div>
+        <div style="display:flex; flex-direction:column; justify-content:center; text-align:center">
+          <div class="ttl" style="font-size: 14px">Enhancing Angular Sensitivity of Segmented Antineutrino Detectors</div>
+          <div class="sub">for Reactor Monitoring Applications</div>
+          <div class="authors">B.C. Crow, M.A.A. Dornfest, J.G. Learned, J.D. Seligman, N.S. Sibert, J.G. Yepez &middot; V.A. Li (LLNL) &nbsp;&middot;&nbsp; Neutrino 2026</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:4px">
+          <div class="logo" style="border-color: white; flex:1">LLNL</div>
+          <div class="logo" style="border-color: white; flex:1">MTV</div>
+        </div>
+      </div>
+      <div style="background:#C8A464; padding: 10px 14px; color:#024731; font-style:italic; font-weight:bold; font-size: 11px; text-align:center">A geometry-agnostic algorithm for IBD directional reconstruction &mdash; rigorous where the conventional method is artificial &mdash; the interpretable baseline for ML.</div>
+      <div class="body" style="grid-template-columns: 1fr 1fr 1fr">
+        <div class="col"></div><div class="col"></div><div class="col"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:18px">Click any one to mark a preference. If you'd like a hybrid (e.g. "banner like A, hero like B"), tell me in chat — I'll iterate.</p>

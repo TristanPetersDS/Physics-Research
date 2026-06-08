@@ -1,0 +1,14 @@
+Processing run # 0 0.1% wt lithium-6...
+Number of lithium-6 captures0.1\%: 8626
+Number of captures on hydrogen: 1374
+Total number of captures: 10000
+Mean energy: 16 keV
+Std dev: 15 keV
+Done!
+Processing run # 0 0.5% wt lithium-6...
+Number of lithium-6 captures0.5\%: 9686
+Number of captures on hydrogen: 314
+Total number of captures: 10000
+Mean energy: 16 keV
+Std dev: 15 keV
+Done!

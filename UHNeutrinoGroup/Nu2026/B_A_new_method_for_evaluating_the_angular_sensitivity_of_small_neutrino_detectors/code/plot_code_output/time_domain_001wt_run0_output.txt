@@ -1,0 +1,3 @@
+Thermal energy at 300K: 2.5851999785999998e-05 keV
+Number of valid rows after filtering for lithium-6 capture: 8626
+Plotting events [0.0, 11.0, 561.0, 9966.0]

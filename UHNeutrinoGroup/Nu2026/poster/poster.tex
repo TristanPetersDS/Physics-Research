@@ -1,0 +1,162 @@
+ % =====================================================================
+%  Conference poster
+%  "Enhancing Angular Sensitivity of Segmented Antineutrino Detectors
+%   for Reactor Monitoring"
+%
+%  Target: Neutrino 2026, 4 ft x 3 ft landscape
+%          (48" x 36" = 121.92 cm x 91.44 cm)
+%  A0 fallback: comment-swap the \usepackage[...]{beamerposter} line.
+% =====================================================================
+%%% To-Do %%%
+% [ ] Finalize Affiliate Seals
+% [X] Fix references to non-placeholder set
+% [X] Update figure caption reference rendering bug (currently rendering as [?])
+% [ ] Update figures to have consistent formatting and coloring
+% [X] Add section content for Block 1
+% ----> [ ] Finalize text content
+% ----> [ ] Finalize object placement
+% ----> [X] Update figure captions to fit poster context
+% [X] Add section content for Block 2
+% ----> [ ] Finalize text content
+% ----> [ ] Finalize object placement
+% ----> [ ] Update figure captions to fit poster context
+% [X] Add section content for Block 3
+% ----> [ ] Finalize text content
+% ----> [ ] Finalize object placement
+% ----> [ ] Update figure captions to fit poster context
+% [X] Add section content for Block 4
+% ----> [ ] Finalize text content
+% ----> [ ] Finalize object placement
+% ----> [ ] Update figure captions to fit poster context
+% [X] Draft results section content for Block 5
+% ----> [ ] Finalize text content
+% ----> [ ] Finalize object placement
+% ----> [ ] Update figure captions to fit poster context
+% [X] Update contributors list
+% [X] Update Acknowledgements section
+% [X] Add QR code to Paper B
+% [X] Fix horizontal text clipping issue in body blocks
+% [X] Adjust Acknowledgements section to fix text clipping (move left margin to left while keeping right margin inplace)
+
+%%% Notes 5/31/26
+% 1. Updated poster dimensions from A0 -> 4'x3'. 
+% 2. Set minimum font size template-wide to render at 28pt with the exception of in-figure text and superscripts for references.
+% 3. Updated the rendering for the "To-Scale" diagram in Block 1 to actually be to-scale when the poster is rendered at 100%. It's much smaller and the in-figure text will not be 28 pt.
+% 4. Printed out the 100% scale poster as a grid of 25 pages and arranged them to check how each of the assets would look. So far everything is looking really good and the text is easily readable at poster scale.
+% 5. Fixed the margins for each of the body columns and for the internal text rendering.
+% 6. Increased scaling for Figure 6 and moved overlapping labels to right side to served as a plot legend instead.
+
+%%% Notes 5/15/26 %%%
+% Logos are still in draft stage
+% Contributor list still placeholder names
+% Reference list still placeholder
+% Acknowledgements list still placeholder
+% Rough outline w/draft-version figures @ https://docs.google.com/presentation/d/1dbpYslNvso42dSGUwl4KMoec9q9DDa_qAD9pkKTYXmQ/edit?slide=id.p#slide=id.p
+% QR code to Paper B arxiv link generated and in project repo
+% Figures currently not in colorblind-friendly format
+
+
+
+\documentclass[final]{beamer}
+\usepackage[size=custom,width=121.92,height=91.44,scale=1.25]{beamerposter}
+% A0 fallback (swap the line above for this one):
+% \usepackage[size=a0,orientation=landscape,scale=1.25]{beamerposter}
+
+\input{config/_preamble}
+\usefonttheme{serif}
+
+% =====================================================================
+\begin{document}
+\begin{frame}[t]
+
+% ----------------- TITLE BANNER --------------------------------------
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[UHGreen]
+    (current page.north west)
+    rectangle ([yshift=-16.8cm]current page.north east);
+  \fill[UHGold]
+    ([yshift=-16.8cm]current page.north west)
+    rectangle ([yshift=-17.4cm]current page.north east);
+\end{tikzpicture}
+
+\vspace{-0.15cm}
+
+\begin{columns}[c,totalwidth=0.98\paperwidth]
+  % --- left wing
+  \begin{column}{0.14\paperwidth}
+    \centering
+    \titlelogo{14}{14}{figures/logos/university_of_hawaii_at_manoa_logo-freelogovectors.net_}
+  \end{column}
+
+  % --- center
+  \begin{column}{0.70\paperwidth}
+    \input{content/title}
+  \end{column}
+
+  % --- right wing
+  \begin{column}{0.14\paperwidth}
+    \centering
+    \titlelogo{14}{6.75}{figures/logos/llnl}\\[0.5cm]
+    \titlelogo{14}{6.75}{figures/logos/MTV-logo-color}
+  \end{column}
+\end{columns}
+
+\vspace{\dimexpr 1.12cm + \postermargin\relax}% body top margin = M
+% =====================================================================
+%  3-COLUMN BODY
+% =====================================================================
+\setlength{\colwidth}{\dimexpr(\paperwidth-4\postermargin)/3\relax}%
+\centerline{%
+\begin{minipage}[t][\bodyheight][t]{\colwidth}
+  \begin{rblock}{Localization of IBD Source}
+    \input{content/block1} % Top Left Block
+  \end{rblock}
+
+  \vspace{\rblockgap}
+
+  \begin{rblock}{Traditional Approach}
+    \input{content/block2} % Bottom Left Block
+  \end{rblock}
+
+\end{minipage}%
+\hspace{\postermargin}%
+\begin{minipage}[t][\bodyheight][t]{\colwidth}
+  \begin{rblock}{Our Approach to Simulation Design}
+    \input{content/block3} % Top Center Block
+  \end{rblock}
+
+  \vspace{\rblockgap}
+
+  \begin{rblock}{Novel Algorithm for Segmented Detectors}
+    \input{content/block4} % Bottom Center Block
+  \end{rblock}
+
+\end{minipage}%
+\hspace{\postermargin}%
+\begin{minipage}[t][\bodyheight][t]{\colwidth}
+  \begin{heroblock}{$\bigstar$\,Conclusions, Findings, and Future Work}
+    \input{content/block5} % Rightmost Block
+    \vfill
+  \end{heroblock}
+\end{minipage}%
+}% end centered body
+%\hspace*{0.020\paperwidth}%
+
+% =====================================================================
+%  FOOTER STRIP
+% =====================================================================
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[UHGold]
+    ([yshift=5cm]current page.south west)
+    rectangle ([yshift=5.6cm]current page.south east);
+  \fill[UHGreen]
+    (current page.south west)
+    rectangle ([yshift=5cm]current page.south east);
+  \node[anchor=center, text=white] at ([yshift=3.8cm]current page.south) {
+    \begin{minipage}{\dimexpr\paperwidth-0.05\paperwidth\relax}
+      \input{content/footer}
+    \end{minipage}
+  };
+\end{tikzpicture}
+\end{frame}
+\end{document}

@@ -1,0 +1,136 @@
+\fbox
+{
+\begin{minipage}{0.45\textwidth}
+    \vspace{0.5cm}
+    Key findings:
+    \begin{itemize}
+        \item At large n, the algorithm gives the direction of antineutrino sources
+        \item At small n, the algorithm gives a reasonable uncertainty
+        \item As a pattern matching method, the algorithm provides a comparison between distributions
+    \end{itemize}    
+\end{minipage}
+}
+\hspace{0.025\textwidth}
+\begin{minipage}{0.45\linewidth}
+\begin{figure}
+    \includegraphics[width=0.7\linewidth]{fig/parallel/06_money_plot_fit_arctan_log_4p.pdf}
+
+    \label{fig:POI_segsize_uncert}
+\end{figure} 
+\end{minipage}
+    \captionof{figure}{Angular uncertainty plot comparing the performance of three different square segment sizes: 5 mm, 50 mm and 150 mm.} 
+    %Notice that the smallest segment size begins to perform better than the other two for higher counts. Smaller segment sizes outperform larger ones for higher counts simply due to superior resolution.
+\vspace{0.5cm}
+
+\begin{figure}
+\centering
+\begin{tabular}{ccc}
+\includegraphics[width=0.3\linewidth]{fig/bin_dist_rot0_001wt.pdf}
+&
+\includegraphics[width=0.3\linewidth]{fig/bin_dist_rot30_001wt.pdf}
+&
+\includegraphics[width=0.3\linewidth]{fig/bin_dist_rot45_001wt.pdf} \\
+\end{tabular}
+
+    \begin{tabular}{>{\centering\arraybackslash}p{0.32\linewidth} >{\centering\arraybackslash}p{0.32\linewidth}>{\centering\arraybackslash}p{0.32\linewidth}}
+        \makebox[0.32\linewidth][c]{%
+            \begin{picture}(20,20)
+                \put(-5,13){\color{black}\vector(1,0){20}} 
+            \end{picture}
+        }
+        &
+        \makebox[0.32\linewidth][c]{%
+            \begin{picture}(20,20)
+                \put(-3,17){\color{black}\vector(2,-1){18}} 
+            \end{picture}
+        }
+ &
+        \makebox[0.32\linewidth][c]{%
+            \begin{picture}(20,20)
+                \put(-1,19){\color{black}\vector(1,-1){14}} 
+            \end{picture}
+        }        \\
+\hspace{-0.5cm}$\vartheta_\nu = 0^\circ$ & $\vartheta_\nu = -30^\circ$ & $\vartheta_\nu = -45^\circ$ 
+    \end{tabular}
+    \caption{Examples of binning distributions for incoming angles $\vartheta_\nu=0^\circ,-30^\circ,-45^\circ$, 0.1\%\ ${}^6$Li-doped. The direction of antineutrinos is indicated by the arrows below the plots.}
+    \label{fig:trackplot3dratpac_001wt}
+\end{figure}
+
+\begin{figure}
+\centering
+
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \begin{tikzpicture}
+        \node[inner sep=0] (img)
+            {\includegraphics[height=3.05in]{fig/parallel/FND_n_10_dx_50.pdf}};
+        
+        \node[anchor=west, font=\fontsize{18}{22}\selectfont, align=left, inner sep=1pt]
+             at ([xshift=3pt]img.east)
+             {\textcolor{gray!50!black}{$\vartheta_\mathrm{true}$}\\
+              \textcolor{blue}{$\vartheta_\mathrm{min}$}\\
+              \textcolor{red}{$\vartheta_\mathrm{fit}$}};
+    \end{tikzpicture}
+
+    \vspace{2pt}
+    (a) $n=10$
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \begin{tikzpicture}
+        \node[inner sep=0] (img)
+            {\includegraphics[height=3.05in]{fig/parallel/FND_n_100_dx_50.pdf}};
+        
+        \node[anchor=west, font=\fontsize{18}{22}\selectfont, align=left, inner sep=1pt]
+             at ([xshift=3pt]img.east)
+             {\textcolor{gray!50!black}{$\vartheta_\mathrm{true}$}\\
+              \textcolor{blue}{$\vartheta_\mathrm{min}$}\\
+              \textcolor{red}{$\vartheta_\mathrm{fit}$}};
+    \end{tikzpicture}
+
+    \vspace{2pt}
+    (b) $n=100$
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \begin{tikzpicture}
+        \node[inner sep=0] (img)
+            {\includegraphics[height=3.05in]{fig/parallel/FND_n_1000_dx_50.pdf}};
+        
+        \node[anchor=west, font=\fontsize{18}{22}\selectfont, align=left, inner sep=1pt]
+             at ([xshift=3pt]img.east)
+             {\textcolor{gray!50!black}{$\vartheta_\mathrm{true}$}\\
+              \textcolor{blue}{$\vartheta_\mathrm{min}$}\\
+              \textcolor{red}{$\vartheta_\mathrm{fit}$}};
+    \end{tikzpicture}
+
+    \vspace{2pt}
+    (c) $n=1000$
+\end{minipage}
+
+\caption{Explanation of angles and spread. The FND here is calculated from the RATPAC2 neutron capture data with a segment size of 50 mm.}
+\label{fig_spread}
+\end{figure}
+
+% \begin{figure}[ht]
+%     \includegraphics[width=0.5\linewidth]{fig/parallel/06_money_plot_fit_arctan_log_4p.pdf}
+%     \caption{Angular uncertainty plot comparing the performance of three different square segment sizes: 5 mm, 50 mm and 150 mm.} 
+%     %Notice that the smallest segment size begins to perform better than the other two for higher counts. Smaller segment sizes outperform larger ones for higher counts simply due to superior resolution.
+%     \label{fig:POI_segsize_uncert}
+% \end{figure}
+
+
+\fbox
+{
+\begin{minipage}{0.98\textwidth}
+\vspace{0.5cm}
+    Future work:
+        \begin{itemize}
+            \item Developing methods to take advantage of machine learning
+            \item Investigating how to apply to monolithic detectors
+            \item Investigating a generalized approach to three dimensionally segmented detectors
+        \end{itemize}
+\end{minipage}
+}

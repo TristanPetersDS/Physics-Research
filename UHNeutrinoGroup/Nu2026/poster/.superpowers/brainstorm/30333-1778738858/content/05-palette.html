@@ -1,0 +1,173 @@
+<h2>Colorblind-safe palette — pick a highlight family</h2>
+<p class="subtitle"><strong>Locked:</strong> banner F1, body F, UH Mānoa green (#024731) as primary, UH gold (#C8A464) as accent, off-white #F5F4EE background. Guidelines forbid red+green pairing, so the existing crimson <code>Highlight</code> (#8B1A1A) must be replaced. Each palette below shows the same F1+F mockup so the difference is purely the highlight family. All four are deuteranopia / protanopia / tritanopia safe.</p>
+
+<style>
+.frame { aspect-ratio: 1.414 / 1; background: #F5F4EE; border: 2px solid #024731; padding: 0; display:flex; flex-direction:column; font-size: 8px; line-height: 1.15; overflow:hidden; position: relative }
+.frame .green { background:#024731; color:white; display:flex; align-items:stretch; min-height: 20%; max-height: 20% }
+.frame .gold { background:#C8A464; height: 5px; flex-shrink: 0 }
+.frame .body { flex:1; display:grid; gap:5px; padding:6px; background: #F5F4EE; min-height: 0; grid-template-columns: 1fr 1fr 1.3fr; grid-template-rows: 1fr 1fr auto }
+.frame .blk { background:#fff; border:1px solid #024731; padding: 4px; display:flex; flex-direction:column; gap: 3px; min-height: 0; overflow:hidden }
+.frame .blk .h { background:#024731; color:white; padding: 2px 4px; font-size: 6.5px; font-weight: bold; margin: -4px -4px 0 -4px }
+.frame .blk .fig { flex:1; background:#F5F4EE; border: 1px dashed #C8A464; display:flex; align-items:center; justify-content:center; color: #024731; font-size: 6.5px; font-style: italic; min-height: 14px }
+.frame .blk .txt { font-size: 6.5px; color: #333; line-height: 1.3 }
+.frame .hero { grid-column: 3; grid-row: 1 / span 2 }
+.frame .footer { background:#024731; color:white; padding: 3px 8px; font-size: 6.5px; display:flex; justify-content: space-between; flex-shrink: 0; grid-column: 1 / -1 }
+.seal { background:#fff; border: 2px solid #C8A464; display:flex; align-items:center; justify-content:center; color:#024731; font-size: 8px; font-weight: bold; text-align:center; line-height: 1.1 }
+.miniseal { background:#fff; border: 1px solid #C8A464; display:flex; align-items:center; justify-content:center; color:#024731; font-size: 6.5px; font-weight: bold; text-align:center; line-height: 1.1 }
+.ttl-big { font-weight:bold; font-size: 17px; letter-spacing:0.3px }
+.ttl-sub { font-style:italic; font-size: 11px; opacity:0.93; margin-top: 4px }
+.ttl-authors-tight { font-size: 6.5px; opacity: 0.82; margin-top: 5px; line-height: 1.3 }
+.callout { font-size:6px; font-weight:bold; padding:2px 4px; border-radius: 2px; align-self:flex-start; margin-bottom: 2px }
+.swatch-row { display:flex; gap:6px; margin: 10px 0 6px; font-size: 10px; align-items:center }
+.swatch { width: 28px; height: 22px; border-radius: 3px; border: 1px solid rgba(0,0,0,0.15); display:flex; align-items:center; justify-content:center; color:white; font-size: 8px; font-weight: bold }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px }
+.cards .card { padding: 12px }
+.cards .card h3 { margin-top: 0; margin-bottom: 4px }
+.cards .card p { font-size: 12px; margin: 4px 0 6px }
+</style>
+
+<div class="cards">
+
+  <!-- P1: Navy highlight -->
+  <div class="card" data-choice="p1" onclick="toggleSelect(this)">
+    <div class="letter">P1</div>
+    <h3>Institutional — UH green + gold + LLNL navy</h3>
+    <p>The most conservative pick. <code>LLNLNavy #003594</code> is already in the spec; promote it from "logo-only" to the highlight role. Three institutional colors, zero brand-foreign additions. Calm and authoritative.</p>
+    <div class="swatch-row">
+      <div class="swatch" style="background:#024731">UH</div>
+      <div class="swatch" style="background:#C8A464; color:#024731">Gold</div>
+      <div class="swatch" style="background:#003594">Navy</div>
+      <div class="swatch" style="background:#F5F4EE; color:#024731; border-color:#024731">BG</div>
+      <span style="opacity:0.7">primary · accent · highlight · background</span>
+    </div>
+    <div class="frame">
+      <div class="green">
+        <div style="width:14%; padding:8px; display:flex; align-items:center"><div class="seal" style="flex:1; aspect-ratio:1/1">UH Mānoa<br/>seal</div></div>
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:10px 6px; text-align:center">
+          <div class="ttl-big">Enhancing Angular Sensitivity of Segmented Antineutrino Detectors</div>
+          <div class="ttl-sub">for Reactor Monitoring Applications</div>
+          <div class="ttl-authors-tight">B.C. Crow, M.A.A. Dornfest, J.G. Learned, J.D. Seligman, N.S. Sibert, J.G. Yepez (UH Mānoa) · V.A. Li (LLNL) · Neutrino 2026</div>
+        </div>
+        <div style="width:14%; padding:8px; display:flex; flex-direction:column; gap:5px; justify-content:center"><div class="miniseal" style="flex:1">LLNL</div><div class="miniseal" style="flex:1">MTV</div></div>
+      </div>
+      <div class="gold"></div>
+      <div class="body">
+        <div class="blk"><div class="h">Motivation + IBD</div><div class="fig">RAT-PAC IBD viz</div></div>
+        <div class="blk"><div class="h">Conventional method</div><span class="callout" style="background:#003594; color:white">▲ key flaw</span><div class="fig">Paper A Fig. 3</div></div>
+        <div class="hero blk" style="border:2px solid #003594"><div class="h" style="background:#003594">★ HERO — δϑ vs n</div><div class="fig" style="flex:2.2; border-color:#003594">Paper B Fig. 13</div><div class="txt">Crossover · n≈30 inflection · ML baseline</div></div>
+        <div class="blk"><div class="h">Algorithm</div><div class="fig">Binning + FND</div></div>
+        <div class="blk"><div class="h">Extensions + future</div><div class="txt">Geo-ν, SMR, monolithic, checkerboard glass</div></div>
+        <div class="footer">refs · LLNL-JRNL-2016175 · MTV<span>QR</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P2: Vermillion highlight -->
+  <div class="card" data-choice="p2" onclick="toggleSelect(this)">
+    <div class="letter">P2</div>
+    <h3>Warm — UH green + gold + Wong vermillion</h3>
+    <p>Vermillion <code>#D55E00</code> (Okabe–Ito palette, the standard CB-safe scientific accent). It pops without clashing with the gold or fighting the green. Conveys "discovery / read me" energy. Adds one non-institutional color.</p>
+    <div class="swatch-row">
+      <div class="swatch" style="background:#024731">UH</div>
+      <div class="swatch" style="background:#C8A464; color:#024731">Gold</div>
+      <div class="swatch" style="background:#D55E00">Verm</div>
+      <div class="swatch" style="background:#F5F4EE; color:#024731; border-color:#024731">BG</div>
+      <span style="opacity:0.7">primary · accent · highlight · background</span>
+    </div>
+    <div class="frame">
+      <div class="green">
+        <div style="width:14%; padding:8px; display:flex; align-items:center"><div class="seal" style="flex:1; aspect-ratio:1/1">UH Mānoa<br/>seal</div></div>
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:10px 6px; text-align:center">
+          <div class="ttl-big">Enhancing Angular Sensitivity of Segmented Antineutrino Detectors</div>
+          <div class="ttl-sub">for Reactor Monitoring Applications</div>
+          <div class="ttl-authors-tight">B.C. Crow, M.A.A. Dornfest, J.G. Learned, J.D. Seligman, N.S. Sibert, J.G. Yepez (UH Mānoa) · V.A. Li (LLNL) · Neutrino 2026</div>
+        </div>
+        <div style="width:14%; padding:8px; display:flex; flex-direction:column; gap:5px; justify-content:center"><div class="miniseal" style="flex:1">LLNL</div><div class="miniseal" style="flex:1">MTV</div></div>
+      </div>
+      <div class="gold"></div>
+      <div class="body">
+        <div class="blk"><div class="h">Motivation + IBD</div><div class="fig">RAT-PAC IBD viz</div></div>
+        <div class="blk"><div class="h">Conventional method</div><span class="callout" style="background:#D55E00; color:white">▲ key flaw</span><div class="fig">Paper A Fig. 3</div></div>
+        <div class="hero blk" style="border:2px solid #D55E00"><div class="h" style="background:#D55E00">★ HERO — δϑ vs n</div><div class="fig" style="flex:2.2; border-color:#D55E00">Paper B Fig. 13</div><div class="txt">Crossover · n≈30 inflection · ML baseline</div></div>
+        <div class="blk"><div class="h">Algorithm</div><div class="fig">Binning + FND</div></div>
+        <div class="blk"><div class="h">Extensions + future</div><div class="txt">Geo-ν, SMR, monolithic, checkerboard glass</div></div>
+        <div class="footer">refs · LLNL-JRNL-2016175 · MTV<span>QR</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P3: Magenta highlight -->
+  <div class="card" data-choice="p3" onclick="toggleSelect(this)">
+    <div class="letter">P3</div>
+    <h3>Modern — UH green + gold + IBM magenta</h3>
+    <p>Magenta <code>#DC267F</code> (IBM Design colorblind-safe palette). The boldest pick — feels current and methods-conscious. Pairs surprisingly well with deep green; signals ML/data-science adjacency without saying so. Most visually distinct from the green of any option.</p>
+    <div class="swatch-row">
+      <div class="swatch" style="background:#024731">UH</div>
+      <div class="swatch" style="background:#C8A464; color:#024731">Gold</div>
+      <div class="swatch" style="background:#DC267F">Mag</div>
+      <div class="swatch" style="background:#F5F4EE; color:#024731; border-color:#024731">BG</div>
+      <span style="opacity:0.7">primary · accent · highlight · background</span>
+    </div>
+    <div class="frame">
+      <div class="green">
+        <div style="width:14%; padding:8px; display:flex; align-items:center"><div class="seal" style="flex:1; aspect-ratio:1/1">UH Mānoa<br/>seal</div></div>
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:10px 6px; text-align:center">
+          <div class="ttl-big">Enhancing Angular Sensitivity of Segmented Antineutrino Detectors</div>
+          <div class="ttl-sub">for Reactor Monitoring Applications</div>
+          <div class="ttl-authors-tight">B.C. Crow, M.A.A. Dornfest, J.G. Learned, J.D. Seligman, N.S. Sibert, J.G. Yepez (UH Mānoa) · V.A. Li (LLNL) · Neutrino 2026</div>
+        </div>
+        <div style="width:14%; padding:8px; display:flex; flex-direction:column; gap:5px; justify-content:center"><div class="miniseal" style="flex:1">LLNL</div><div class="miniseal" style="flex:1">MTV</div></div>
+      </div>
+      <div class="gold"></div>
+      <div class="body">
+        <div class="blk"><div class="h">Motivation + IBD</div><div class="fig">RAT-PAC IBD viz</div></div>
+        <div class="blk"><div class="h">Conventional method</div><span class="callout" style="background:#DC267F; color:white">▲ key flaw</span><div class="fig">Paper A Fig. 3</div></div>
+        <div class="hero blk" style="border:2px solid #DC267F"><div class="h" style="background:#DC267F">★ HERO — δϑ vs n</div><div class="fig" style="flex:2.2; border-color:#DC267F">Paper B Fig. 13</div><div class="txt">Crossover · n≈30 inflection · ML baseline</div></div>
+        <div class="blk"><div class="h">Algorithm</div><div class="fig">Binning + FND</div></div>
+        <div class="blk"><div class="h">Extensions + future</div><div class="txt">Geo-ν, SMR, monolithic, checkerboard glass</div></div>
+        <div class="footer">refs · LLNL-JRNL-2016175 · MTV<span>QR</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P4: Full Okabe–Ito multi-accent -->
+  <div class="card" data-choice="p4" onclick="toggleSelect(this)">
+    <div class="letter">P4</div>
+    <h3>Multi-accent — UH green + gold + full Okabe–Ito for figures</h3>
+    <p>Reserve gold for the hero, then use the full Okabe–Ito qualitative palette inside figures: vermillion, sky-blue, blue, reddish-purple, yellow. Best when the data plots themselves carry signal across several categories (e.g. the 5/50/150 mm crossover curves). Slightly busier; needs disciplined application.</p>
+    <div class="swatch-row">
+      <div class="swatch" style="background:#024731">UH</div>
+      <div class="swatch" style="background:#C8A464; color:#024731">Gold</div>
+      <div class="swatch" style="background:#D55E00">V</div>
+      <div class="swatch" style="background:#56B4E9; color:#024731">Sky</div>
+      <div class="swatch" style="background:#0072B2">Blu</div>
+      <div class="swatch" style="background:#CC79A7">Pur</div>
+      <span style="opacity:0.7">primary · accent · figure series 1–4</span>
+    </div>
+    <div class="frame">
+      <div class="green">
+        <div style="width:14%; padding:8px; display:flex; align-items:center"><div class="seal" style="flex:1; aspect-ratio:1/1">UH Mānoa<br/>seal</div></div>
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:10px 6px; text-align:center">
+          <div class="ttl-big">Enhancing Angular Sensitivity of Segmented Antineutrino Detectors</div>
+          <div class="ttl-sub">for Reactor Monitoring Applications</div>
+          <div class="ttl-authors-tight">B.C. Crow, M.A.A. Dornfest, J.G. Learned, J.D. Seligman, N.S. Sibert, J.G. Yepez (UH Mānoa) · V.A. Li (LLNL) · Neutrino 2026</div>
+        </div>
+        <div style="width:14%; padding:8px; display:flex; flex-direction:column; gap:5px; justify-content:center"><div class="miniseal" style="flex:1">LLNL</div><div class="miniseal" style="flex:1">MTV</div></div>
+      </div>
+      <div class="gold"></div>
+      <div class="body">
+        <div class="blk"><div class="h">Motivation + IBD</div><div class="fig">RAT-PAC IBD viz</div></div>
+        <div class="blk"><div class="h">Conventional method</div><span class="callout" style="background:#D55E00; color:white">▲ key flaw</span><div class="fig">Paper A Fig. 3 — vermillion curves on cream</div></div>
+        <div class="hero blk" style="border:2px solid #C8A464"><div class="h" style="background:#C8A464; color:#024731">★ HERO — δϑ vs n</div><div class="fig" style="flex:2.2"><span style="color:#D55E00">— 5 mm</span> <span style="color:#56B4E9; margin:0 4px">— 50 mm</span> <span style="color:#0072B2">— 150 mm</span></div><div class="txt">Crossover · n≈30 inflection · ML baseline</div></div>
+        <div class="blk"><div class="h">Algorithm</div><div class="fig"><span style="color:#024731">●</span> <span style="color:#D55E00; margin:0 3px">▲</span> <span style="color:#0072B2">■</span> Binning + FND</div></div>
+        <div class="blk"><div class="h">Extensions + future</div><div class="txt">Geo-ν, SMR, monolithic, checkerboard glass</div></div>
+        <div class="footer">refs · LLNL-JRNL-2016175 · MTV<span>QR</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:14px"><strong>Hidden question:</strong> what energy do you want the headline to carry? <em>P1 navy</em> reads "authoritative / institutional," <em>P2 vermillion</em> reads "discovery / read me," <em>P3 magenta</em> reads "modern / methods-forward," <em>P4 Okabe–Ito</em> reads "data-first / plot-driven." Each plays the colorblind-safety card equally well.</p>
+
+<p class="subtitle" style="margin-top:6px; font-size:11px"><strong>Independent of palette:</strong> non-color encodings (markers ●▲■, line styles, labels) will be layered on every multi-category plot per the guidelines — no figure will rely on color alone.</p>

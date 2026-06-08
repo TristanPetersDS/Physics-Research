@@ -1,0 +1,58 @@
+#!/bin/bash
+# makescript -- simple script to compile paper
+# Usage: makescript [DRAFT_TF] [VIEW_TF]
+
+# help check
+if [[ $1 =~ -h ]]; then
+  echo "Usage: makescript [DRAFT_TF=true] [VIEW_TF=true]"
+  exit 10
+fi
+
+# options
+DRAFT_TF=${1:-true}
+VIEW_TF=${2:-true}
+
+# directory check
+if [[ $(pwd) =~ "postdoc_uh/dirnpaper" ]]; then
+  echo "Building document..."
+else
+  echo "ERROR: Non-\"postdoc_uh/dirnpaper\" directory."
+  exit 5
+fi
+
+# MAIN
+if $DRAFT_TF; then
+  make clean && make draft
+else
+  make clean && make all
+fi
+
+# update symlink name
+if [ -L drafts/Draft_*.pdf ]; then
+  OLD_LINKNAME=$(basename $(ls -tr1 drafts/Draft_*.pdf | tail -1))
+fi
+NEW_LINKNAME="Draft_$(date +%m-%d-%y).pdf"
+# check whether symlink has already been updated on this date
+if [[ ! $OLD_LINKNAME == $NEW_LINKNAME ]]; then
+  # update or create symlink
+  if [ -L drafts/$OLD_LINKNAME ]; then
+    mv drafts/$OLD_LINKNAME drafts/$NEW_LINKNAME
+  else
+    ln -sf $(pwd)/main.pdf drafts/$NEW_LINKNAME
+  fi
+fi
+
+# if not draft, copy out
+if $DRAFT_TF; then
+  echo -e "\nREMINDER: Switch 'draft' option off for final build!\n"
+else
+  cp main.pdf drafts/NewApproachesToAntineutrinoDirectionality_2022.pdf
+fi
+
+# view (optionally)
+if $VIEW_TF; then
+  evince main.pdf &
+fi
+
+# all pau!   )
+exit 0

@@ -1,0 +1,22 @@
+\begin{itemize}
+    \item Used RATPAC-2 for all simulations
+    \item Created simple monolithic geometry using \(0.1\%\)-wt \({}^6\text{Li}\)-doped plastic scintillator
+    \item Created grid overlay to create binning matrices for 5 mm, 50 mm and 150 mm segment sizes in analysis work
+\end{itemize}
+
+\begin{figure}[ht]
+    \begin{overpic}[width=0.39\linewidth]{fig/RAT_PAC_IBD_run_6_5_crop.png}
+      \footnotesize
+
+    \put(16.5,90){\color{white}\vector(0,-1){5}}
+    \put(0,93){\fcolorbox{white}{white!30}{\parbox{170pt}{neutron capture ${\color{orange}n} \; {^6}\mathrm{Li} \to {^3}\mathrm{H}\;\; {^4}\mathrm{He}$}}}
+    
+    \put(67,45){\color{white}\vector(0,1){15}}
+    \put(57,41){\fcolorbox{white}{white!30}{\parbox{140pt}{positron\\ annihilation ${\color{red}e^+} e^- \to {\color{green}\gamma} \; {\color{green}\gamma}$}}}
+
+    \put(81,86){\color{white}\vector(0,-1){15}}
+    \put(65,85){\fcolorbox{white}{white!30}{\parbox{150pt}{inverse $\beta$ decay $\bar\nu_e \; ^1\mathrm{H} \to {\color{red}e^+ } \;{\color{orange}n}$}}}
+    \end{overpic}
+    \caption{Rendering of RAT-PAC 2 IBD visualization. Positron track in red, neutron track --- orange, gamma-rays --- green, Cherenkov photons --- cyan. Scintillation light turned off for clarity. Cherenkov photons indicate the direction of the positron, which traveled from the top right to the bottom left in this perspective (neutrino, not shown, is from top right to bottom left.}
+    \label{fig_RATPAC_IBD_visual}
+\end{figure}

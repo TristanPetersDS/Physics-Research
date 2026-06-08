@@ -1,0 +1,40 @@
+Number of lithium-6 captures for run0: 8626
+run0 mean number of scatters: 28
+Std dev: 14
+Done!
+Number of lithium-6 captures for run1: 8673
+run1 mean number of scatters: 28
+Std dev: 14
+Done!
+Number of lithium-6 captures for run2: 8727
+run2 mean number of scatters: 28
+Std dev: 14
+Done!
+Number of lithium-6 captures for run3: 8641
+run3 mean number of scatters: 28
+Std dev: 14
+Done!
+Number of lithium-6 captures for run4: 8673
+run4 mean number of scatters: 28
+Std dev: 14
+Done!
+Number of lithium-6 captures for run5: 8663
+run5 mean number of scatters: 28
+Std dev: 14
+Done!
+Number of lithium-6 captures for run6: 8747
+run6 mean number of scatters: 28
+Std dev: 14
+Done!
+Number of lithium-6 captures for run7: 8641
+run7 mean number of scatters: 28
+Std dev: 14
+Done!
+Number of lithium-6 captures for run8: 8686
+run8 mean number of scatters: 28
+Std dev: 14
+Done!
+Number of lithium-6 captures for run9: 8702
+run9 mean number of scatters: 28
+Std dev: 14
+Done!

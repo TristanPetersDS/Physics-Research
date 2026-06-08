@@ -1,0 +1,117 @@
+<style>
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  .legend { display:flex; gap:18px; flex-wrap:wrap; font-size:13px; margin:6px 0 14px; color:#cfd8d2;}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:22px;height:14px;border-radius:3px;display:inline-block}
+  .poster {
+    aspect-ratio: 4/3; background:#F5F4EE; border:3px solid #024731;
+    display:flex; flex-direction:column; overflow:hidden; box-shadow:0 6px 24px rgba(0,0,0,.35);
+  }
+  .banner{background:#024731;color:#fff;padding:10px 16px;}
+  .banner h1{font-size:17px;margin:0;font-weight:700;letter-spacing:.2px}
+  .banner .sub{font-size:11px;opacity:.85;margin-top:2px}
+  .gold{height:6px;background:#C8A464}
+  .body{flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px;}
+  .col{display:flex;flex-direction:column;gap:8px;min-height:0}
+  .blk{background:#fff;border:2px solid #024731;border-radius:3px;display:flex;flex-direction:column;flex:1;overflow:hidden}
+  .blk.hero{border:3px solid #C8A464}
+  .rib{background:#024731;color:#fff;font-size:11px;font-weight:700;padding:4px 8px}
+  .blk.hero .rib{background:#C8A464;color:#024731}
+  .in{padding:6px 8px;display:flex;flex-direction:column;gap:5px;flex:1;min-height:0}
+  .t{font-size:10px;color:#243;line-height:1.25}
+  .t b{color:#024731}
+  .eq{font-family:Georgia,serif;font-style:italic;font-size:11px;text-align:center;background:#f3f1e8;border:1px solid #C8A464;border-radius:3px;padding:4px}
+  .fig{border:1.5px dashed #C8A464;background:#fbf6ea;border-radius:3px;padding:5px;font-size:9.5px;color:#7a5e22;text-align:center;display:flex;align-items:center;justify-content:center;flex:1;min-height:34px}
+  .fig.big{min-height:120px;background:#fff7e6}
+  .figrow{display:flex;gap:6px}
+  .figrow .fig{flex:1}
+  .moved{display:inline-block;background:#003594;color:#fff;font-size:8px;padding:1px 5px;border-radius:8px;margin-top:3px}
+  .q{display:inline-block;background:#b00;color:#fff;font-size:8px;padding:1px 5px;border-radius:8px;margin-top:3px}
+  .new{display:inline-block;background:#C8A464;color:#024731;font-size:8px;font-weight:700;padding:1px 5px;border-radius:8px;margin-top:3px}
+  .keep{display:inline-block;background:#024731;color:#fff;font-size:8px;padding:1px 5px;border-radius:8px;margin-top:3px}
+  .num{font-size:9.5px;color:#243;line-height:1.3}
+</style>
+
+<div class="wrap">
+<h2>How I read your sketch (corrected for the narrative arc)</h2>
+<p class="subtitle">This is my interpretation of <b>template_draft_c</b> + <b>poster_storytelling</b>. Correct me in the terminal — especially the figure moves flagged in red.</p>
+
+<div class="legend">
+  <span><span class="sw" style="border:1.5px dashed #C8A464;background:#fbf6ea"></span> figure region</span>
+  <span><span class="sw" style="background:#fff;border:2px solid #024731"></span> text block</span>
+  <span><span class="sw" style="background:#C8A464"></span> hero (gold)</span>
+  <span><span class="sw" style="background:#003594"></span> moved between blocks</span>
+  <span><span class="sw" style="background:#b00"></span> I'm guessing — confirm</span>
+  <span><span class="sw" style="background:#C8A464"></span> new content</span>
+</div>
+
+<div class="poster">
+  <div class="banner">
+    <h1>Enhancing Angular Sensitivity of Segmented Antineutrino Detectors</h1>
+    <div class="sub">for Reactor Monitoring &nbsp;·&nbsp; Crow, Duvall et al. &nbsp;·&nbsp; Neutrino 2026, UC Irvine</div>
+  </div>
+  <div class="gold"></div>
+  <div class="body">
+
+    <!-- COL 1 -->
+    <div class="col">
+      <div class="blk">
+        <div class="rib">Localization of IBD Source</div>
+        <div class="in">
+          <div class="t"><b>•</b> Directional method for segmented IBD<br><b>•</b> e⁺ → prompt vertex; n → delayed vertex<br><b>•</b> ⁶Li localizes n capture (~10 µm)<br><b>•</b> direction from n with enough events</div>
+          <div class="fig">Fig 1 — 1:1-scale IBD trajectory + segment sizes (SANDD/MAD/Bugey/PROSPECT)<br><span class="keep">fixed 1:1 — move only, never resize</span></div>
+        </div>
+      </div>
+      <div class="blk">
+        <div class="rib">Traditional Approach</div>
+        <div class="in">
+          <div class="eq">Δφ = arctan( (P/l) / √N )</div>
+          <div class="t"><b>•</b> P→0 ⇒ Δφ→0 (unphysical)<br><b>•</b> Vogel–Beacom: ~26° spread in n direction<br><b>•</b> neutrons scatter many times before capture</div>
+          <div class="fig">Fig 2 — conventional "Chooz" angular uncertainty vs detectors</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COL 2 -->
+    <div class="col">
+      <div class="blk">
+        <div class="rib">Our Approach to Simulation Design</div>
+        <div class="in">
+          <div class="t"><b>•</b> RATPAC-2 simulations<br><b>•</b> 0.1%-wt ⁶Li monolithic scintillator<br><b>•</b> grid overlay → binning matrices (5/50/150 mm)</div>
+          <div class="figrow">
+            <div class="fig">Fig 3 — RAT-PAC IBD visualization</div>
+            <div class="fig">Fig 6 — binning distributions 0°/−30°/−45°<br><span class="moved">moved here from block 5?</span><span class="q">confirm</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="blk">
+        <div class="rib">Novel Algorithm for Segmented Detectors</div>
+        <div class="in">
+          <div class="num"><b>1</b> reference data, all angles &nbsp; <b>2</b> bin prompt/delayed displacements &nbsp; <b>3</b> normalize &nbsp; <b>4</b> L² norm of matrix diffs &nbsp; <b>5</b> fit → θ₀</div>
+          <div class="eq">FND = ‖ M(θ) − M_data ‖₂</div>
+          <div class="figrow">
+            <div class="fig">Fig 4 — prompt–delayed geometry diagram</div>
+            <div class="fig">Fig 7 — FND spread vs angle (n=10/100/1000)<br><span class="moved">moved here from block 5?</span><span class="q">confirm</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COL 3 hero -->
+    <div class="col">
+      <div class="blk hero">
+        <div class="rib">★ Conclusions, Findings, and Future Work</div>
+        <div class="in">
+          <div class="t"><b>Key findings</b><br><b>•</b> large n → source direction<br><b>•</b> small n → reasonable uncertainty<br><b>•</b> pattern-matching compares distributions</div>
+          <div class="fig big">Fig 5 — money plot: angular uncertainty vs counts, 5 / 50 / 150 mm segments<br><span class="new">ENLARGED to fill — the headline result</span></div>
+          <div class="t"><b>Future work</b><br><b>•</b> machine-learning approach<br><b>•</b> monolithic detectors<br><b>•</b> 3-D segmented generalization</div>
+          <div class="fig" style="border-style:solid;border-color:#024731;background:#eef3f0;color:#024731">Practical impact: geo-ν · neutrino assessment · reactor monitoring<br><span class="new">from your storytelling map — candidate whitespace filler</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:14px"><b>The big question:</b> does the headline figure (money plot) become the large hero of block 5, with the binning (Fig 6) and FND-spread (Fig 7) figures relocating to blocks 3 and 4 to match your narrative arc? Or do you want all result figures to stay together in block 5?</p>
+</div>

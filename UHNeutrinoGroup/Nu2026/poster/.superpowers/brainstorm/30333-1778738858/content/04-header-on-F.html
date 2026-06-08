@@ -1,0 +1,165 @@
+<h2>Banner-treatment variations (body F locked)</h2>
+<p class="subtitle">Body stays as F (3 cols + promoted hero result on the right). Four banner treatments below &mdash; varying seal sizing, text hierarchy, and where the author line lives. Mockups are at A0 landscape scale.</p>
+
+<style>
+.frame { aspect-ratio: 1.414 / 1; background: #F5F4EE; border: 2px solid #024731; padding: 0; display:flex; flex-direction:column; font-size: 8px; line-height: 1.15; overflow:hidden }
+.frame .green { background:#024731; color:white; display:flex; align-items:stretch; min-height: 20%; max-height: 20% }
+.frame .gold { background:#C8A464; height: 5px; flex-shrink: 0 }
+.frame .body { flex:1; display:grid; gap:5px; padding:6px; background: #F5F4EE; min-height: 0; grid-template-columns: 1fr 1fr 1.3fr; grid-template-rows: 1fr 1fr auto }
+.frame .blk { background:#fff; border:1px solid #024731; padding: 4px; display:flex; flex-direction:column; gap: 3px; min-height: 0; overflow:hidden }
+.frame .blk .h { background:#024731; color:white; padding: 2px 4px; font-size: 6.5px; font-weight: bold; margin: -4px -4px 0 -4px }
+.frame .blk .fig { flex:1; background:#F5F4EE; border: 1px dashed #C8A464; display:flex; align-items:center; justify-content:center; color: #024731; font-size: 6.5px; font-style: italic; min-height: 14px }
+.frame .blk .txt { font-size: 6.5px; color: #333; line-height: 1.3 }
+.frame .hero { grid-column: 3; grid-row: 1 / span 2; border-width: 2px; border-color: #C8A464 }
+.frame .hero .h { background: #C8A464; color: #024731 }
+.frame .footer { background:#024731; color:white; padding: 3px 8px; font-size: 6.5px; display:flex; justify-content: space-between; flex-shrink: 0; grid-column: 1 / -1 }
+
+/* Banner pieces (shared) */
+.seal { background:#fff; border: 2px solid #C8A464; display:flex; align-items:center; justify-content:center; color:#024731; font-size: 8px; font-weight: bold; text-align:center; line-height: 1.1 }
+.miniseal { background:#fff; border: 1px solid #C8A464; display:flex; align-items:center; justify-content:center; color:#024731; font-size: 6.5px; font-weight: bold; text-align:center; line-height: 1.1 }
+.ttl-big { font-weight:bold; font-size: 17px; letter-spacing:0.3px }
+.ttl-sub { font-style:italic; font-size: 11px; opacity:0.93; margin-top: 4px }
+.ttl-authors-tight { font-size: 6.5px; opacity: 0.82; margin-top: 5px; line-height: 1.3 }
+.ttl-authors-gold { background: rgba(200,164,100,0.18); padding: 3px 8px; font-size: 7px; color: #fff; opacity: 0.95 }
+
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px }
+.cards .card { padding: 12px }
+.cards .card h3 { margin-top: 0; margin-bottom: 6px }
+.cards .card p { font-size: 13px; margin: 4px 0 8px }
+</style>
+
+<div class="cards">
+
+  <!-- F1: Big symmetric seals -->
+  <div class="card" data-choice="f1" onclick="toggleSelect(this)">
+    <div class="letter">F1</div>
+    <h3>Big symmetric seals — title commands the center</h3>
+    <p>UH seal left, two stacked partner logos right; both wings at ~14% of width. Title bumps up to a heroic size; authors collapse to a single tight line.</p>
+    <div class="frame">
+      <div class="green">
+        <div style="width: 14%; padding: 8px; display:flex; align-items:center">
+          <div class="seal" style="flex:1; aspect-ratio: 1 / 1">UH M&#257;noa<br/>seal</div>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 10px 6px; text-align:center">
+          <div class="ttl-big">Enhancing Angular Sensitivity of Segmented Antineutrino Detectors</div>
+          <div class="ttl-sub">for Reactor Monitoring Applications</div>
+          <div class="ttl-authors-tight">B.C. Crow, M.A.A. Dornfest, J.G. Learned, J.D. Seligman, N.S. Sibert, J.G. Yepez (UH M&#257;noa) &middot; V.A. Li (LLNL) &middot; Neutrino 2026</div>
+        </div>
+        <div style="width: 14%; padding: 8px; display:flex; flex-direction:column; gap:5px; justify-content:center">
+          <div class="miniseal" style="flex:1">LLNL</div>
+          <div class="miniseal" style="flex:1">MTV</div>
+        </div>
+      </div>
+      <div class="gold"></div>
+      <div class="body">
+        <div class="blk"><div class="h">Motivation + IBD</div><div class="fig">RAT-PAC IBD viz</div></div>
+        <div class="blk"><div class="h">Conventional method</div><div class="fig">Paper A Fig. 3</div></div>
+        <div class="hero blk"><div class="h">HERO: &delta;&vartheta; vs n</div><div class="fig" style="flex:2.2">Paper B Fig. 13</div><div class="txt">Crossover &middot; n&approx;30 inflection &middot; ML baseline</div></div>
+        <div class="blk"><div class="h">Algorithm</div><div class="fig">Geometry + binning matrices + FND fit</div></div>
+        <div class="blk"><div class="h">Extensions + future</div><div class="txt">Geo-&nu;, SMR, monolithic, checkerboard glass</div></div>
+        <div class="footer">refs &middot; LLNL-JRNL-2016175 &middot; MTV<span>QR</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F2: Authors moved to gold strip -->
+  <div class="card" data-choice="f2" onclick="toggleSelect(this)">
+    <div class="letter">F2</div>
+    <h3>Title-only banner, authors live in the gold strip</h3>
+    <p>Banner carries <em>only</em> title + subtitle; authors + affiliations migrate to a thicker gold strip beneath. Title gets the most generous font size of any variant. The gold strip is now an honest band, not just an underline.</p>
+    <div class="frame">
+      <div class="green">
+        <div style="width: 13%; padding: 8px; display:flex; align-items:center">
+          <div class="seal" style="flex:1; aspect-ratio: 1 / 1">UH M&#257;noa<br/>seal</div>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 6px; text-align:center">
+          <div class="ttl-big" style="font-size: 21px">Enhancing Angular Sensitivity of</div>
+          <div class="ttl-big" style="font-size: 21px">Segmented Antineutrino Detectors</div>
+          <div class="ttl-sub" style="font-size: 12px; margin-top: 6px">for Reactor Monitoring Applications</div>
+        </div>
+        <div style="width: 13%; padding: 8px; display:flex; flex-direction:column; gap:5px; justify-content:center">
+          <div class="miniseal" style="flex:1">LLNL</div>
+          <div class="miniseal" style="flex:1">MTV</div>
+        </div>
+      </div>
+      <div class="gold" style="height: 18px; display:flex; align-items:center; justify-content:center; color: #024731; font-size: 7.5px; font-weight: bold; padding: 0 14px">
+        <span>B.C. Crow, M.A.A. Dornfest, J.G. Learned, J.D. Seligman, N.S. Sibert, J.G. Yepez (UH M&#257;noa) &middot; V.A. Li (LLNL) &middot;&nbsp;<span style="font-weight:normal; font-style:italic">Neutrino 2026</span></span>
+      </div>
+      <div class="body">
+        <div class="blk"><div class="h">Motivation + IBD</div><div class="fig">RAT-PAC IBD viz</div></div>
+        <div class="blk"><div class="h">Conventional method</div><div class="fig">Paper A Fig. 3</div></div>
+        <div class="hero blk"><div class="h">HERO: &delta;&vartheta; vs n</div><div class="fig" style="flex:2.2">Paper B Fig. 13</div><div class="txt">Crossover &middot; n&approx;30 inflection &middot; ML baseline</div></div>
+        <div class="blk"><div class="h">Algorithm</div><div class="fig">Geometry + binning matrices + FND fit</div></div>
+        <div class="blk"><div class="h">Extensions + future</div><div class="txt">Geo-&nu;, SMR, monolithic, checkerboard glass</div></div>
+        <div class="footer">refs &middot; LLNL-JRNL-2016175 &middot; MTV<span>QR</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F3: Logos all on right (one row) -->
+  <div class="card" data-choice="f3" onclick="toggleSelect(this)">
+    <div class="letter">F3</div>
+    <h3>All three logos right, title left-anchored</h3>
+    <p>UH + LLNL + MTV in a single row on the right; title and authors left-anchored (newspaper-style). Reading flow starts where the eye lands, no symmetry tax. Title can grow wider.</p>
+    <div class="frame">
+      <div class="green">
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 10px 16px">
+          <div class="ttl-big" style="font-size: 19px; text-align:left">Enhancing Angular Sensitivity of</div>
+          <div class="ttl-big" style="font-size: 19px; text-align:left">Segmented Antineutrino Detectors</div>
+          <div class="ttl-sub" style="font-size: 11px; text-align:left">for Reactor Monitoring Applications</div>
+          <div class="ttl-authors-tight" style="text-align:left; margin-top: 7px">B.C. Crow, M.A.A. Dornfest, J.G. Learned, J.D. Seligman, N.S. Sibert, J.G. Yepez (UH M&#257;noa) &middot; V.A. Li (LLNL) &middot; Neutrino 2026</div>
+        </div>
+        <div style="width: 26%; padding: 8px; display:flex; gap:5px; align-items:center">
+          <div class="seal" style="flex:1; aspect-ratio: 1 / 1; font-size:7px">UH M&#257;noa</div>
+          <div class="seal" style="flex:1; aspect-ratio: 1 / 1; font-size:7px">LLNL</div>
+          <div class="seal" style="flex:1; aspect-ratio: 1 / 1; font-size:7px">MTV</div>
+        </div>
+      </div>
+      <div class="gold"></div>
+      <div class="body">
+        <div class="blk"><div class="h">Motivation + IBD</div><div class="fig">RAT-PAC IBD viz</div></div>
+        <div class="blk"><div class="h">Conventional method</div><div class="fig">Paper A Fig. 3</div></div>
+        <div class="hero blk"><div class="h">HERO: &delta;&vartheta; vs n</div><div class="fig" style="flex:2.2">Paper B Fig. 13</div><div class="txt">Crossover &middot; n&approx;30 inflection &middot; ML baseline</div></div>
+        <div class="blk"><div class="h">Algorithm</div><div class="fig">Geometry + binning matrices + FND fit</div></div>
+        <div class="blk"><div class="h">Extensions + future</div><div class="txt">Geo-&nu;, SMR, monolithic, checkerboard glass</div></div>
+        <div class="footer">refs &middot; LLNL-JRNL-2016175 &middot; MTV<span>QR</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F4: Asymmetric — UH seal big on left, partners small on right -->
+  <div class="card" data-choice="f4" onclick="toggleSelect(this)">
+    <div class="letter">F4</div>
+    <h3>UH seal anchors the left, partners shrink right</h3>
+    <p>UH M&#257;noa seal is the most generous element on the banner &mdash; signals lead institution. LLNL + MTV are smaller stacked tags on the right. Title center.</p>
+    <div class="frame">
+      <div class="green">
+        <div style="width: 17%; padding: 8px; display:flex; align-items:center">
+          <div class="seal" style="flex:1; aspect-ratio: 1 / 1; font-size: 9px">UH M&#257;noa<br/>seal</div>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 10px 6px; text-align:center">
+          <div class="ttl-big" style="font-size: 18px">Enhancing Angular Sensitivity of</div>
+          <div class="ttl-big" style="font-size: 18px">Segmented Antineutrino Detectors</div>
+          <div class="ttl-sub">for Reactor Monitoring Applications</div>
+          <div class="ttl-authors-tight">B.C. Crow, M.A.A. Dornfest, J.G. Learned, J.D. Seligman, N.S. Sibert, J.G. Yepez (UH M&#257;noa) &middot; V.A. Li (LLNL) &middot; Neutrino 2026</div>
+        </div>
+        <div style="width: 10%; padding: 8px; display:flex; flex-direction:column; gap:4px; justify-content:center">
+          <div class="miniseal" style="flex:1; font-size:5.5px">LLNL</div>
+          <div class="miniseal" style="flex:1; font-size:5.5px">MTV</div>
+        </div>
+      </div>
+      <div class="gold"></div>
+      <div class="body">
+        <div class="blk"><div class="h">Motivation + IBD</div><div class="fig">RAT-PAC IBD viz</div></div>
+        <div class="blk"><div class="h">Conventional method</div><div class="fig">Paper A Fig. 3</div></div>
+        <div class="hero blk"><div class="h">HERO: &delta;&vartheta; vs n</div><div class="fig" style="flex:2.2">Paper B Fig. 13</div><div class="txt">Crossover &middot; n&approx;30 inflection &middot; ML baseline</div></div>
+        <div class="blk"><div class="h">Algorithm</div><div class="fig">Geometry + binning matrices + FND fit</div></div>
+        <div class="blk"><div class="h">Extensions + future</div><div class="txt">Geo-&nu;, SMR, monolithic, checkerboard glass</div></div>
+        <div class="footer">refs &middot; LLNL-JRNL-2016175 &middot; MTV<span>QR</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:16px">Notes: <strong>F2</strong> gives the title the most visual weight (authors get a colored stripe of their own). <strong>F3</strong> reads most like a research-group flyer. <strong>F1/F4</strong> are the most "academic poster" feel. Click one; or tell me to swap pieces between them.</p>

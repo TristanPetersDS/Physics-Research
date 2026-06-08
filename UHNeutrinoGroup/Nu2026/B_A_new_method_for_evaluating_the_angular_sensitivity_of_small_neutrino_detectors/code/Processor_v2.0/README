@@ -1,0 +1,17 @@
+Documentation goes here...
+
+Jeffrey Gabriel Yepez
+
+ (v1.0) First major prototype.
+   Dated: 22 Jan 2025
+ (v1.1) Shifted plot tracks to IBD vertex location and created double histogram file 'hist_doped.py'.
+   Dated: 26 Jan 2025
+ (v1.2) New version. Data format changes. Added ability to plot bin distributions. The script 'proc_pos.py' requires both positron and neutron track data files. The script 'proc.py' only requires the newly formatted neutron track file 'data.txt'.
+   Dated: 02 Feb 2025
+ (v1.3) Implement frobenius norm test.
+   Dated: 06 Feb 2025
+        Added some Frobenius norm analysis test subroutines as well as vector sum tests.
+   Dated: 12 Feb 2025
+ (v1.4)
+ (v2.0) Convert to pandas dataframes. Major structural changes and improvements. Include positrons as well as truth data and neutrons. Will soon implemented PDG code filtering. Main Python file used for processing and visualized RATPAC2 data is now called main.py. A new part of the code is developing a new mathematical construct I call the Continuous Frobenius Norm of the Difference (CFND). The CFND is defined as the double integral of the square of the difference between two 2d normal distributions. The integral is then squared rooted to preserve units and align with the Frobenius Norm. Also has discrete simulation of FND compared to absolute value of sine fit and CFND. Notice that for small offset of distribution from center the CFND and FND is for all practical purposes equal to the absolute value of sine. This seems to be a pretty major discovery.
+   Dated: 25 Feb 2025

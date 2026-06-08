@@ -1,0 +1,14 @@
+Processing run # 0 0.1% wt lithium-6...
+Number of lithium-6 captures: 8626
+Number of hydrogen captures: 1374
+Total number of captures: 10000
+Mean capture time on 0.1\% $^6$Li: 34 $\mu$s
+Standard deviation: 34 $\mu$s
+Done!
+Processing run # 0 0.5% wt lithium-6...
+Number of lithium-6 captures: 9686
+Number of hydrogen captures: 314
+Total number of captures: 10000
+Mean capture time on 0.5\% $^6$Li: 8 $\mu$s
+Standard deviation: 7 $\mu$s
+Done!

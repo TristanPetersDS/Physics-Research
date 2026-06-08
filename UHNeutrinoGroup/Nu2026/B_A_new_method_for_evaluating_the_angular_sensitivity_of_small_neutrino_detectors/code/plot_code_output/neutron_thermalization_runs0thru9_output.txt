@@ -1,0 +1,27 @@
+Thermal energy at 300K: 2.5851999785999998e-05 keV
+Processing run # 0 0.1% wt lithium-6...
+Number of lithium-6 captures in 0.1\%: 8626
+Number of hydrogen captures: 1374
+Total number of captures: 10000
+Mean number of scatters before thermalization: 8
+Std dev: 3
+Mean time to thermalize: 291 ns
+Std dev: 206 ns
+Mean number of scatters between thermalization and capture: 19
+Std dev: 14
+Mean time between themalization and capture: 33996 ns
+Std dev: 34233 ns
+Done!
+Processing run # 0 0.5% wt lithium-6...
+Number of lithium-6 captures in 0.5\%: 9686
+Number of hydrogen captures: 314
+Total number of captures: 10000
+Mean number of scatters before thermalization: 8
+Std dev: 3
+Mean time to thermalize: 286 ns
+Std dev: 203 ns
+Mean number of scatters between thermalization and capture: 8
+Std dev: 4
+Mean time between themalization and capture: 7254 ns
+Std dev: 7476 ns
+Done!

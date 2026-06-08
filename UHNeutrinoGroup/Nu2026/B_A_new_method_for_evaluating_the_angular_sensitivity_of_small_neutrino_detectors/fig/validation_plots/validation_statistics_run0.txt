@@ -1,0 +1,13 @@
+Total Captures: 10000
+Li-6 Captures: 8626
+Hydrogen Captures: 1374
+
+Mean Positron Displacement: 9.00 +/- 18.16 mm
+Mean Neutron Displacement: 69.57 +/- 33.54 mm
+Mean Neutron Initial KE: 16.09 +/- 15.25 keV
+Mean Neutron Capture Time: 34.23 +/- 34.11 us
+Mean Time to Therm: 10.86 +/- 8.32 us
+Mean Time After Therm: 34.38 +/- 34.20 us
+Mean Total Scatters: 28.26 +/- 14.15
+Mean Scatters to Therm: 18.30 +/- 5.67
+Mean Scatters After Therm: 13.41 +/- 13.21

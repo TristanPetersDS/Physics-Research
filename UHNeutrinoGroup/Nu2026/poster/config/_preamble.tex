@@ -1,0 +1,203 @@
+% ---- packages -------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{graphicx}
+\usepackage[percent]{overpic}
+\usepackage{pict2e}
+\usepackage{epsfig}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,calc,backgrounds,
+                shapes.geometric,decorations.pathreplacing,fit}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb,bm}
+
+\let\OldDelta\Delta
+\renewcommand{\Delta}{\mathnormal{\OldDelta}}
+\usepackage{siunitx}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage[framemethod=tikz]{mdframed}
+
+% ---- palette --------------------------------------------------------
+\definecolor{UHGreen}{HTML}{024731}
+\definecolor{UHGold}{HTML}{C8A464}
+\definecolor{LLNLNavy}{HTML}{003594}
+%\definecolor{BlockBG}{HTML}{F5F4EE}
+\definecolor{BlockBG}{HTML}{FFFFFF}
+
+\definecolor{SoftGrey}{HTML}{ECECEC}
+
+% ---- beamer theme ---------------------------------------------------
+\setbeamercolor{block title}{fg=white,bg=UHGreen}
+\setbeamercolor{block body}{fg=black,bg=BlockBG}
+\setbeamerfont{block title}{size=\Large,series=\bfseries}
+\setbeamerfont{block body}{size=\normalsize}
+\setbeamertemplate{itemize item}%
+  {\color{UHGreen}\raisebox{0.05ex}{\textbf{\textbullet}}}
+\setbeamertemplate{itemize subitem}%
+  {\color{UHGreen}\raisebox{0.1ex}{\textendash}}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{caption}[numbered]{}
+\setbeamertemplate{caption label separator}{:~}
+\setbeamerfont{caption}{size=\small}
+
+\newlength{\ribbonheight}
+\setlength{\ribbonheight}{2.5cm}
+\newlength{\blockpadding}
+\setlength{\blockpadding}{0.8cm}% internal L/R padding = P (mirrors \blockinnerpad)
+\setbeamertemplate{block begin}{%
+  \vspace*{-0.3ex}%
+  \begin{beamercolorbox}[wd=\linewidth,sep=0pt,leftskip=0pt,rightskip=0pt,colsep*=0pt]{block title}%
+    \begin{minipage}[c][\ribbonheight][s]{\linewidth}%
+      \vspace*{\fill}%
+      \hspace{\blockpadding}\usebeamerfont*{block title}\insertblocktitle\par%
+      \vspace*{0.28cm}%
+    \end{minipage}%
+  \end{beamercolorbox}%
+  \nointerlineskip%
+  \begin{beamercolorbox}[leftskip=\blockpadding,rightskip=\blockpadding,vmode]{block body}%
+    \vspace{\blockinnerpad}%
+}
+
+\setbeamertemplate{block end}{%
+    \vspace{0.30cm}%
+  \end{beamercolorbox}%
+  \vspace{0.40cm}%
+}
+
+% =====================================================================
+%  Layout constants
+% =====================================================================
+% Unified layout knobs:  M = margin (every gap),  P = internal box padding
+\newlength{\postermargin}
+\setlength{\postermargin}{1.5cm}
+\newlength{\blockinnerpad}
+\setlength{\blockinnerpad}{0.8cm}
+\newlength{\colwidth}
+
+% Body region = paperheight(91.44) - banner(17.4) - footer(5.6) = 68.44cm.
+% Reserve margin M top & bottom  =>  bodyheight = 68.44 - 2M.
+\newlength{\bodyheight}
+\setlength{\bodyheight}{\dimexpr 68.44cm - 2\postermargin\relax}
+
+\newlength{\rblockgap}
+\setlength{\rblockgap}{\postermargin}
+
+\newlength{\rblockheight}
+\setlength{\rblockheight}{\bodyheight}
+\addtolength{\rblockheight}{-\rblockgap}
+\setlength{\rblockheight}{0.5\rblockheight}
+
+% =====================================================================
+%  Macros
+% =====================================================================
+% ---- placeholder figure macro --------------------------------------
+\newcommand{\placeholder}[3]{%
+  \begin{tikzpicture}
+    \fill[BlockBG!50!white] (0,0) rectangle (#1,#2);
+    \draw[dashed,UHGreen,line width=1pt] (0,0) rectangle (#1,#2);
+    \draw[UHGreen!25,line width=0.6pt] (0,0) -- (#1,#2);
+    \draw[UHGreen!25,line width=0.6pt] (0,#2) -- (#1,0);
+    \node[align=center,font=\footnotesize\itshape,UHGreen,
+          inner sep=6pt,fill=BlockBG,fill opacity=0.92,text opacity=1,
+          rounded corners=3pt,
+          text width=\dimexpr#1cm-2cm\relax]
+      at (#1/2,#2/2) {placeholder\\#3};
+  \end{tikzpicture}%
+}
+
+% ---- title-banner logo wrapper -------------------------------------
+\newcommand{\titlelogo}[3]{%
+  \begin{tikzpicture}
+    \node[fill=BlockBG!50!white,
+          minimum width=#1 cm,
+          minimum height=#2 cm,
+          inner sep=0.4cm,
+          rounded corners=3pt] {%
+      \includegraphics[width=\dimexpr#1 cm - 0.8cm\relax,
+                       height=\dimexpr#2 cm - 0.8cm\relax,
+                       keepaspectratio]{#3}%
+    };
+  \end{tikzpicture}%
+}
+
+% Inline accent box for highlight callouts.
+\newcommand{\highlight}[1]{%
+  \begin{tikzpicture}[baseline=(X.base)]
+    \node[draw=UHGold,line width=1.2pt,fill=UHGold!12,
+          rounded corners=4pt,inner sep=8pt,
+          font=\bfseries] (X) {#1};
+  \end{tikzpicture}%
+}
+
+% =====================================================================
+%  Block environments (depend on \bodyheight)
+% =====================================================================
+\newenvironment{heroblock}[1]{%
+  \setbeamercolor{block title}{fg=UHGreen,bg=UHGold}%
+  \setbeamercolor{block body}{fg=black,bg=BlockBG}%
+  \begin{mdframed}[%
+    linecolor=UHGold,%
+    linewidth=4pt,%
+    backgroundcolor=BlockBG,%
+    innerleftmargin=0pt,%
+    innerrightmargin=0pt,%
+    innertopmargin=0pt,%
+    innerbottommargin=0pt,%
+    skipabove=0pt,%
+    skipbelow=0pt,%
+    userdefinedwidth=\linewidth,%
+  ]%
+  \begin{block}{#1}%
+  \begin{minipage}[t][\dimexpr\bodyheight-3.3cm-\blockinnerpad\relax][t]{\dimexpr\linewidth-2\blockpadding\relax}%
+}{%
+  \end{minipage}%
+  \end{block}%
+  \end{mdframed}%
+}
+
+\newenvironment{rblock}[1]{%
+  \begin{mdframed}[%
+    linecolor=UHGreen,%
+    linewidth=4pt,%
+    backgroundcolor=BlockBG,%
+    innerleftmargin=0pt,%
+    innerrightmargin=0pt,%
+    innertopmargin=0pt,%
+    innerbottommargin=0pt,%
+    skipabove=0pt,%
+    skipbelow=0pt,%
+    userdefinedwidth=\linewidth,% Prevent horizontal clipping/bleeding
+  ]%
+  \begin{block}{#1}%
+  \begin{minipage}[t][\dimexpr\rblockheight-3.3cm-\blockinnerpad\relax][t]{\dimexpr\linewidth-2\blockpadding\relax}%
+}{%
+  \end{minipage}%
+  \end{block}%
+  \end{mdframed}%
+}
+
+% =====================================================================
+%  List + siunitx config
+% =====================================================================
+\setlist[itemize]{label=\color{UHGreen}\textbf{\textbullet},
+                  leftmargin=1.4em,labelsep=0.5em,
+                  itemsep=5pt,topsep=2pt,parsep=0pt}
+\setlist[itemize,2]{label=\color{UHGreen}\textendash,
+                    leftmargin=1.2em,labelsep=0.4em,
+                    itemsep=3pt,topsep=2pt,parsep=0pt}
+
+\sisetup{detect-all=true}
+
+% ---- Neutrino 2026: 28pt minimum font floor (poster guideline) ----
+% At scale=1.25, \footnotesize/\small rendered 21.6/25.93pt (<28). Floor them to 28pt.
+% Flooring \small also lifts figure captions (caption font uses size=\small).
+\renewcommand{\tiny}{\fontsize{28}{34}\selectfont}
+\renewcommand{\scriptsize}{\fontsize{28}{34}\selectfont}
+\renewcommand{\footnotesize}{\fontsize{28}{34}\selectfont}
+\renewcommand{\small}{\fontsize{28}{34}\selectfont}

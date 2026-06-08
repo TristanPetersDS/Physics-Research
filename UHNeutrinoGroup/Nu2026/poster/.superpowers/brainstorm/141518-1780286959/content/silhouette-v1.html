@@ -1,0 +1,114 @@
+<style>
+  .wrap{max-width:1120px;margin:0 auto}
+  .legend{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;margin:6px 0 14px;color:#cfd8d2}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:24px;height:15px;border-radius:3px;display:inline-block}
+  .poster{aspect-ratio:4/3;background:#F5F4EE;border:3px solid #024731;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.35)}
+  .banner{background:#024731;color:#fff;padding:9px 16px}
+  .banner h1{font-size:16px;margin:0;font-weight:700}
+  .banner .sub{font-size:10px;opacity:.85;margin-top:2px}
+  .gold{height:6px;background:#C8A464}
+  .body{flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;padding:9px}
+  .col{display:flex;flex-direction:column;gap:9px;min-height:0}
+  .blk{background:#fff;border:2px solid #024731;border-radius:3px;display:flex;flex-direction:column;flex:1;overflow:hidden}
+  .blk.hero{border:3px solid #C8A464}
+  .rib{background:#024731;color:#fff;font-size:11px;font-weight:700;padding:4px 8px}
+  .blk.hero .rib{background:#C8A464;color:#024731}
+  .in{padding:7px 8px;display:flex;flex-direction:column;gap:7px;flex:1;min-height:0}
+  /* text region: grey bars, no committed content */
+  .txt{display:flex;flex-direction:column;gap:4px}
+  .txt i{display:block;height:5px;background:#d7ddd9;border-radius:2px}
+  .txt i:nth-child(odd){width:96%}
+  .txt i:nth-child(even){width:82%}
+  .lbl{font-size:8px;letter-spacing:.5px;text-transform:uppercase;color:#9aa39e;margin-bottom:1px}
+  /* equation strip */
+  .eq{border:1px solid #C8A464;background:#f3f1e8;border-radius:3px;padding:6px;text-align:center;font-family:Georgia,serif;font-style:italic;color:#6b5a2a;font-size:11px}
+  /* figure placeholder: mimics the \placeholder macro output */
+  .ph{position:relative;border:1.5px dashed #024731;background:#fff;border-radius:2px;display:flex;align-items:center;justify-content:center;flex:1;min-height:40px;overflow:hidden}
+  .ph::before,.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent 49.4%,rgba(2,71,49,.22) 49.7%,rgba(2,71,49,.22) 50.3%,transparent 50.6%)}
+  .ph::after{background:linear-gradient(to bottom right,transparent 49.4%,rgba(2,71,49,.22) 49.7%,rgba(2,71,49,.22) 50.3%,transparent 50.6%)}
+  .ph em{position:relative;z-index:1;font-style:italic;color:#024731;font-size:9.5px;text-align:center;background:rgba(255,255,255,.9);padding:2px 5px;border-radius:3px;line-height:1.2}
+  .figrow{display:flex;gap:7px;flex:1;min-height:60px}
+  .figrow .ph{flex:1}
+  .tag{position:absolute;top:3px;right:3px;background:#C8A464;color:#024731;font-size:7.5px;font-weight:700;padding:1px 4px;border-radius:6px;z-index:2}
+</style>
+
+<div class="wrap">
+<h2>Poster silhouette — boxes &amp; proportions only</h2>
+<p class="subtitle">No content committed. Tell me where to add/remove a figure box, change a proportion, or move text vs figure ordering.</p>
+
+<div class="legend">
+  <span><span class="sw" style="border:1.5px dashed #024731;background:#fff"></span> figure placeholder (= your <code>\placeholder</code>)</span>
+  <span><span class="sw" style="background:#d7ddd9"></span> text region (uncommitted)</span>
+  <span><span class="sw" style="border:1px solid #C8A464;background:#f3f1e8"></span> equation strip</span>
+  <span><span class="sw" style="background:#C8A464"></span> hero column</span>
+</div>
+
+<div class="poster">
+  <div class="banner">
+    <h1>Enhancing Angular Sensitivity of Segmented Antineutrino Detectors</h1>
+    <div class="sub">for Reactor Monitoring · Neutrino 2026 · 48″ × 36″ landscape</div>
+  </div>
+  <div class="gold"></div>
+  <div class="body">
+
+    <!-- COL 1 -->
+    <div class="col">
+      <div class="blk">
+        <div class="rib">Localization of IBD Source</div>
+        <div class="in">
+          <div class="txt"><span class="lbl">text</span><i></i><i></i><i></i><i></i></div>
+          <div class="ph" style="flex:0 0 26%"><em>placeholder<br>1:1 figure</em><span class="tag">FIXED — don't resize</span></div>
+        </div>
+      </div>
+      <div class="blk">
+        <div class="rib">Traditional Approach</div>
+        <div class="in">
+          <div class="txt"><span class="lbl">text</span><i></i><i></i></div>
+          <div class="eq">equation</div>
+          <div class="ph"><em>placeholder<br>figure</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COL 2 -->
+    <div class="col">
+      <div class="blk">
+        <div class="rib">Our Approach to Simulation Design</div>
+        <div class="in">
+          <div class="txt"><span class="lbl">text</span><i></i><i></i><i></i></div>
+          <div class="figrow">
+            <div class="ph"><em>placeholder<br>figure</em></div>
+            <div class="ph"><em>placeholder<br>figure</em></div>
+          </div>
+        </div>
+      </div>
+      <div class="blk">
+        <div class="rib">Novel Algorithm for Segmented Detectors</div>
+        <div class="in">
+          <div class="txt"><span class="lbl">numbered list 1–5</span><i></i><i></i><i></i></div>
+          <div class="eq">equation — FND</div>
+          <div class="eq">equation — L² norm</div>
+          <div class="ph"><em>placeholder<br>figure</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COL 3 hero -->
+    <div class="col">
+      <div class="blk hero">
+        <div class="rib">★ Conclusions, Findings, and Future Work</div>
+        <div class="in">
+          <div class="txt"><span class="lbl">key findings — text</span><i></i><i></i><i></i></div>
+          <div class="ph" style="flex:1.3"><em>placeholder<br>figure</em></div>
+          <div class="txt"><span class="lbl">future work — text</span><i></i><i></i></div>
+          <div class="ph" style="flex:1.3"><em>placeholder<br>figure</em></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:14px"><b>Hidden question:</b> in the hero column, is it two stacked figures (as drawn), or one big headline figure with the others relocated to columns 1–2? And in block 4, do the two equations + figure stack vertically, or sit beside the numbered list?</p>
+</div>

@@ -42,8 +42,9 @@ UHNeutrinoGroup/
   mapping, currently 5 mm = red, 50 mm = green, 150 mm = blue).
 - 📦 Tracked data: `.npy` event arrays and `.tar.gz` simulation bundles are kept
   in-repo for reproducibility.
-- 🚫 Not tracked: large `*.zip` raw-data bundles (see `.gitignore`) and
-  machine-local `.claude/settings.local.json`.
+- 🚫 Not tracked: large `*.zip` raw-data bundles, the `REFERENCES/` library of
+  external papers/theses (copyright + size — kept local only), LaTeX build
+  artifacts, and machine-local `.claude/settings.local.json` (see `.gitignore`).
 
 ## Setup
 ```bash
@@ -81,3 +82,17 @@ python3 processor/hist_doped.py             # doped track-length histograms
 
 See **`UHNeutrinoGroup/CLAUDE.md`** for the full figure→script map and per-script
 data-directory details.
+
+## Event-display rendering (Neutrino 2026)
+
+Vectorized (PDF/SVG) renders of the RATPAC2 **MTV inverse-beta-decay** simulation
+for the poster / Paper B. The workflow, the four rendering routes
+(OpenGL + gl2ps, GeViewer, DAWN, Blender), the hard-won setup insights, and the
+planned **"magnifying-lens" composite figure** are documented in:
+
+**`UHNeutrinoGroup/Nu2026/poster/docs/ibd-event-display-rendering.md`**
+
+> Renders come from a local RATPAC2 build (Geant4 11.1.2), not this repo's Python
+> engine. Launch the Qt viewer with `QT_QPA_PLATFORM=xcb` (XWayland), `beamOn`,
+> then `/vis/ogl/export` — see the doc for why headless export doesn't capture
+> trajectories. Confirmed-working vis macros live with that build under `macros/mtv/`.

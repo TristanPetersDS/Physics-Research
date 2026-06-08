@@ -22,3 +22,23 @@ Thumbs.db
 # --- Claude Code machine-local settings ----------------------------------
 # (also covered by the global ignore, repeated here so clones stay clean)
 .claude/settings.local.json
+
+# --- LaTeX build artifacts (regenerable) ---------------------------------
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.toc
+*.out
+*.bbl
+*.blg
+*.run.xml
+*.bak
+
+# --- External reference library ------------------------------------------
+# REFERENCES/ holds third-party papers/theses (copyright + ~720 MB); kept
+# local only. Force-add a specific file if ever needed: `git add -f <path>`
+REFERENCES/

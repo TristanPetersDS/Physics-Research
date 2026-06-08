@@ -1,0 +1,8 @@
+Expr              N     P_mm        l_mm        dPhi_deg ln_style 		clr 		PackFactor
+DoubleChooz     9198  125.27  13.88             6.434500       solid    green		1
+Checker-3D      4206  105.68  32.65             0.676400       solid    red		.25
+SANTA           2275  218.28  999.83            0.032038       solid    orange	0.00460
+NuLat5          3931  43.40   20.03             1.139500       solid    blue		1
+Checker-2D      1860  55.57   24.79             0.511500       dashed   red		.5
+PROSPECT        3726  150.00  36.82             3.8179         dashed   gray		1
+SANDD-CM        247   16.79   9.99              2.014600       dashed   black		.7

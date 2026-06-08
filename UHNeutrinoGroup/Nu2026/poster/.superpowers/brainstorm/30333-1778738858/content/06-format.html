@@ -1,0 +1,99 @@
+<h2>Format — A0 landscape or 4 ft × 3 ft?</h2>
+<p class="subtitle"><strong>Locked:</strong> banner F1, body F, palette = UH green + gold + cream (no fourth callout color). Only aspect ratio varies below. The two frames are scaled to the same height so the proportional difference is honest.</p>
+
+<style>
+.frame { background: #F5F4EE; border: 2px solid #024731; padding: 0; display:flex; flex-direction:column; font-size: 8px; line-height: 1.15; overflow:hidden; height: 360px }
+.frame.a0   { aspect-ratio: 1.414 / 1 }
+.frame.four3 { aspect-ratio: 1.333 / 1 }
+.frame .green { background:#024731; color:white; display:flex; align-items:stretch; min-height: 20%; max-height: 20% }
+.frame .gold { background:#C8A464; height: 5px; flex-shrink: 0 }
+.frame .body { flex:1; display:grid; gap:5px; padding:6px; background: #F5F4EE; min-height: 0; grid-template-columns: 1fr 1fr 1.3fr; grid-template-rows: 1fr 1fr auto }
+.frame .blk { background:#fff; border:1px solid #024731; padding: 4px; display:flex; flex-direction:column; gap: 3px; min-height: 0; overflow:hidden }
+.frame .blk .h { background:#024731; color:white; padding: 2px 4px; font-size: 6.5px; font-weight: bold; margin: -4px -4px 0 -4px }
+.frame .blk .fig { flex:1; background:#F5F4EE; border: 1px dashed #C8A464; display:flex; align-items:center; justify-content:center; color: #024731; font-size: 6.5px; font-style: italic; min-height: 14px }
+.frame .blk .txt { font-size: 6.5px; color: #333; line-height: 1.3 }
+.frame .hero { grid-column: 3; grid-row: 1 / span 2; border: 2px solid #C8A464 }
+.frame .hero .h { background:#C8A464; color:#024731 }
+.frame .footer { background:#024731; color:white; padding: 3px 8px; font-size: 6.5px; display:flex; justify-content: space-between; flex-shrink: 0; grid-column: 1 / -1 }
+.seal { background:#fff; border: 2px solid #C8A464; display:flex; align-items:center; justify-content:center; color:#024731; font-size: 8px; font-weight: bold; text-align:center; line-height: 1.1 }
+.miniseal { background:#fff; border: 1px solid #C8A464; display:flex; align-items:center; justify-content:center; color:#024731; font-size: 6.5px; font-weight: bold; text-align:center; line-height: 1.1 }
+.ttl-big { font-weight:bold; font-size: 17px; letter-spacing:0.3px }
+.ttl-sub { font-style:italic; font-size: 11px; opacity:0.93; margin-top: 4px }
+.ttl-authors-tight { font-size: 6.5px; opacity: 0.82; margin-top: 5px; line-height: 1.3 }
+
+.options { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 14px }
+.options .option { padding: 14px }
+.options .option h3 { margin-top: 0; margin-bottom: 4px }
+.options .option .meta { font-size: 11px; opacity: 0.78; margin-bottom: 10px }
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; font-size: 11px }
+.pros-cons h4 { margin: 0 0 4px; font-size: 11px }
+.pros-cons ul { margin: 0; padding-left: 16px }
+.pros-cons .pros li::marker { color: #024731 }
+.pros-cons .cons li::marker { color: #C8A464 }
+</style>
+
+<div class="options">
+
+  <div class="option" data-choice="a0" onclick="toggleSelect(this)">
+    <div class="letter">A0</div>
+    <h3>A0 landscape — 1189 × 841 mm</h3>
+    <div class="meta">Aspect 1.414 : 1 (√2, ISO standard) · UPS print 1 business day · ~30% more area than 4×3</div>
+    <div class="frame a0">
+      <div class="green">
+        <div style="width:14%; padding:8px; display:flex; align-items:center"><div class="seal" style="flex:1; aspect-ratio:1/1">UH Mānoa<br/>seal</div></div>
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:10px 6px; text-align:center">
+          <div class="ttl-big">Enhancing Angular Sensitivity of Segmented Antineutrino Detectors</div>
+          <div class="ttl-sub">for Reactor Monitoring Applications</div>
+          <div class="ttl-authors-tight">B.C. Crow, M.A.A. Dornfest, J.G. Learned, J.D. Seligman, N.S. Sibert, J.G. Yepez (UH Mānoa) · V.A. Li (LLNL) · Neutrino 2026</div>
+        </div>
+        <div style="width:14%; padding:8px; display:flex; flex-direction:column; gap:5px; justify-content:center"><div class="miniseal" style="flex:1">LLNL</div><div class="miniseal" style="flex:1">MTV</div></div>
+      </div>
+      <div class="gold"></div>
+      <div class="body">
+        <div class="blk"><div class="h">Motivation + IBD</div><div class="fig">RAT-PAC IBD viz</div></div>
+        <div class="blk"><div class="h">Conventional method</div><div class="fig">Paper A Fig. 3</div></div>
+        <div class="hero blk"><div class="h">★ HERO — δϑ vs n</div><div class="fig" style="flex:2.2; border-color:#C8A464">Paper B Fig. 13 (oversized)</div><div class="txt">Crossover · n≈30 inflection · ML baseline</div></div>
+        <div class="blk"><div class="h">Algorithm</div><div class="fig">Binning + FND fit</div></div>
+        <div class="blk"><div class="h">Extensions + future</div><div class="txt">Geo-ν, SMR, monolithic, checkerboard glass</div></div>
+        <div class="footer">refs · LLNL-JRNL-2016175 · MTV<span>QR</span></div>
+      </div>
+    </div>
+    <div class="pros-cons">
+      <div class="pros"><h4>Pros</h4><ul><li>More body area (1.0 m² vs 1.12 m²)</li><li>Wider columns: hero figure breathes</li><li>Banner authors line fits on one row</li><li>Standard physics-conference size</li></ul></div>
+      <div class="cons"><h4>Cons</h4><ul><li>UPS needs 1 business day</li><li>FedEx may not stock A0</li><li>Heavier tube to carry</li></ul></div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="four3" onclick="toggleSelect(this)">
+    <div class="letter">4×3</div>
+    <h3>4 ft × 3 ft landscape — 1219 × 914 mm</h3>
+    <div class="meta">Aspect 1.333 : 1 (4:3) · Same-day at FedEx and UPS · ~8% taller, ~2.5% wider than A0</div>
+    <div class="frame four3">
+      <div class="green">
+        <div style="width:14%; padding:8px; display:flex; align-items:center"><div class="seal" style="flex:1; aspect-ratio:1/1">UH Mānoa<br/>seal</div></div>
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:10px 6px; text-align:center">
+          <div class="ttl-big">Enhancing Angular Sensitivity of Segmented Antineutrino Detectors</div>
+          <div class="ttl-sub">for Reactor Monitoring Applications</div>
+          <div class="ttl-authors-tight">B.C. Crow, M.A.A. Dornfest, J.G. Learned, J.D. Seligman, N.S. Sibert, J.G. Yepez (UH Mānoa) · V.A. Li (LLNL) · Neutrino 2026</div>
+        </div>
+        <div style="width:14%; padding:8px; display:flex; flex-direction:column; gap:5px; justify-content:center"><div class="miniseal" style="flex:1">LLNL</div><div class="miniseal" style="flex:1">MTV</div></div>
+      </div>
+      <div class="gold"></div>
+      <div class="body">
+        <div class="blk"><div class="h">Motivation + IBD</div><div class="fig">RAT-PAC IBD viz</div></div>
+        <div class="blk"><div class="h">Conventional method</div><div class="fig">Paper A Fig. 3</div></div>
+        <div class="hero blk"><div class="h">★ HERO — δϑ vs n</div><div class="fig" style="flex:2.2; border-color:#C8A464">Paper B Fig. 13 (oversized)</div><div class="txt">Crossover · n≈30 inflection · ML baseline</div></div>
+        <div class="blk"><div class="h">Algorithm</div><div class="fig">Binning + FND fit</div></div>
+        <div class="blk"><div class="h">Extensions + future</div><div class="txt">Geo-ν, SMR, monolithic, checkerboard glass</div></div>
+        <div class="footer">refs · LLNL-JRNL-2016175 · MTV<span>QR</span></div>
+      </div>
+    </div>
+    <div class="pros-cons">
+      <div class="pros"><h4>Pros</h4><ul><li>Same-day print at FedEx and UPS</li><li>Squarer body: each column a bit taller</li><li>Slightly more vertical for the hero plot</li><li>Travel risk is lower (reprint on arrival)</li></ul></div>
+      <div class="cons"><h4>Cons</h4><ul><li>~12% less total surface area</li><li>Body cols are narrower at the same height</li><li>Title may wrap into two lines</li><li>Less "Neutrino-conference standard"</li></ul></div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:14px"><strong>Hidden question:</strong> is print logistics on the day-of (4×3 ft, same-day) more important than the extra ~12% of working area (A0)? If you have a buffer day in Hawaiʻi before the conference, A0 is the more standard pick.</p>

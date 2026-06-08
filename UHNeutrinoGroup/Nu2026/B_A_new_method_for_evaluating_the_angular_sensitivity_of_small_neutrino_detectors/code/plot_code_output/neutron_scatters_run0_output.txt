@@ -1,0 +1,14 @@
+Processing run # 0 0.1% wt lithium-6...
+Number of lithium-6 captures0.1\%: 8626
+Number of hydrogen captures: 1374
+Total number of captures: 10000
+Mean number of scatters: 28
+Std dev: 14
+Done!
+Processing run # 0 0.5% wt lithium-6...
+Number of lithium-6 captures0.5\%: 9686
+Number of hydrogen captures: 314
+Total number of captures: 10000
+Mean number of scatters: 17
+Std dev: 6
+Done!
