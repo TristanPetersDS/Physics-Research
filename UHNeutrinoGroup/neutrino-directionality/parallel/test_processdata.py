@@ -69,5 +69,33 @@ class TestProcessData(unittest.TestCase):
         np.testing.assert_allclose(c, [[3.0, 4.0, 0.0], [13.0, 4.0, 0.0]])
 
 
+    def test_processdata_aligns_mismatched_counts(self):
+        # truth has 2 events, neutrons has 3 -> align to common prefix of 2.
+        truth = """Row Instance trackPDG trackProcess evid mcx mcy mcz mcu mcv mcw mcpdg
+0 0 -11 0 0 0.0 0.0 0.0 0 0 0 -11
+1 0 -11 0 1 5.0 1.0 0.0 0 0 0 -11
+"""
+        neutrons = """Row Instance trackPDG trackPosX trackPosY trackPosZ trackTime trackMomX trackMomY trackMomZ trackKE trackProcess
+0 0 2112 1.0 0.0 0.0 0 0 0 0 0.01 0
+0 1 2112 3.0 4.0 0.0 0.2 0 0 0 0.001 1
+1 0 2112 10.0 0.0 0.0 0 0 0 0 0.01 0
+1 1 2112 13.0 4.0 0.0 0.1 0 0 0 0.001 1
+2 0 2112 20.0 0.0 0.0 0 0 0 0 0.01 0
+2 1 2112 25.0 7.0 0.0 0.1 0 0 0 0.001 1
+"""
+        with open(self.truth, "w") as f:
+            f.write(truth)
+        with open(self.neut, "w") as f:
+            f.write(neutrons)
+        pp = self._make()
+        pp.processData()
+        v = np.load(self.vfile)
+        c = np.load(self.cfile)
+        self.assertEqual(len(v), 2)
+        self.assertEqual(len(c), 2)  # neutrons truncated 3 -> 2 (common prefix)
+        np.testing.assert_allclose(v, [[0.0, 0.0, 0.0], [5.0, 1.0, 0.0]])
+        np.testing.assert_allclose(c, [[3.0, 4.0, 0.0], [13.0, 4.0, 0.0]])
+
+
 if __name__ == "__main__":
     unittest.main()

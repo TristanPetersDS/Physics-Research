@@ -138,7 +138,7 @@ class ParallelProcessor():
 
             print(f"Read {len(self.vertices)} event vertices...")
 
-            np.save(self.vertices_file, np.array(self.vertices))
+            self.vertices = np.array(self.vertices)
 
             # Process the neutrons file. Syntax for neutrons:
             # Row Instance trackPDG trackPosX trackPosY trackPosZ trackTime trackMomX trackMomY trackMomZ trackKE trackProcess
@@ -175,7 +175,23 @@ class ParallelProcessor():
 
             print(f"Read {len(self.captures)} event captures...")
 
-            np.save(self.captures_file, np.array(self.captures))
+            self.captures = np.array(self.captures)
+
+            # The truth (vertices) and neutron (captures) files can describe
+            # different event counts (e.g. an incomplete upstream merge). They
+            # are event-aligned by order, so align to the common prefix before
+            # saving -- downstream code computes coords = captures - vertices
+            # and requires equal lengths.
+            n = min(len(self.vertices), len(self.captures))
+            if len(self.vertices) != len(self.captures):
+                print(f"WARNING: vertex/capture count mismatch "
+                      f"({len(self.vertices)} vs {len(self.captures)}); "
+                      f"aligning to common prefix of {n} events.")
+                self.vertices = self.vertices[:n]
+                self.captures = self.captures[:n]
+
+            np.save(self.vertices_file, self.vertices)
+            np.save(self.captures_file, self.captures)
 
             return
 
