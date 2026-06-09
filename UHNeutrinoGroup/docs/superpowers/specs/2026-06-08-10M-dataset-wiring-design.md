@@ -187,3 +187,24 @@ intentionally**, so:
 3. Validation table prints with **equal** vertex/capture counts ≈ 10M and avg
    track length consistent with the 1M 69.98 mm.
 4. The 1M arrays and all existing scripts/figures are untouched.
+
+## 11. Outcome (2026-06-09)
+
+Implemented on branch `feat/10M-dataset-wiring` and run end-to-end. Key result:
+the merged bundle's `truth.txt` holds **9,000,000** events but `neutrons.txt`
+holds **10,000,000** — an uneven upstream merge. The two are event-aligned by
+order: `captures[:9M] − vertices` gives ~70 mm neutron tracks (matching the 1M
+baseline) while any other offset gives detector-scale garbage. Per user decision,
+`processData()` now aligns the two arrays to their common prefix (with a printed
+WARNING), yielding **9,000,000 validated, aligned events** (9× the 1M paper set).
+
+Validation vs 1M (all consistent): avg track length **70.006 vs 69.983 mm**;
+`coords_mean_x` **16.82 vs 16.87 mm** (the forward directional signal); usable
+fraction (Δx=50) **0.6996 vs 0.7001**. Outputs:
+`events/fid_10M_unfiltered_{vertices,captures}.npy` (216 MB each, 9M rows;
+git-ignored).
+
+**Follow-up (not done):** `truth.txt` is short ~1M events vs `neutrons.txt`,
+likely one sub-run's truth omitted from the mtc-b merge. To get the full 10M
+aligned set, re-merge/re-pull the truth on mtc-b. The Okabe-Ito recolor remains
+deferred to a later session.
