@@ -23,7 +23,11 @@ from tqdm import tqdm
 from mpi4py import MPI
 
 class ParallelProcessor():    
-    def __init__(self, n=1000, dx=50, gs=9, cent=True, bd="data"):
+    def __init__(self, n=1000, dx=50, gs=9, cent=True, bd="data",
+                 positron_file="truth.txt", neutron_file="neutrons.txt",
+                 vertices_file="events/fid_1M_unfiltered_vertices.npy",
+                 captures_file="events/fid_1M_unfiltered_captures.npy",
+                 process=False, load=True):
 
         # Initializes the parameters for the parallel array.
         self.comm = MPI.COMM_WORLD
@@ -47,12 +51,12 @@ class ParallelProcessor():
             plt.rcParams["mathtext.fontset"] = "cm"
 
         # Filenames for ASCII output from RATPAC2 to be processed into unfiltered coordinates.
-        self.positron_file = "truth.txt"
-        self.neutron_file = "neutrons.txt"
+        self.positron_file = positron_file
+        self.neutron_file = neutron_file
 
-        # Load in a 10M event fiducial dataset.
-        self.vertices_file = "events/fid_1M_unfiltered_vertices.npy"
-        self.captures_file = "events/fid_1M_unfiltered_captures.npy"
+        # Processed numpy datasets (1M by default; override for the 10M run).
+        self.vertices_file = vertices_file
+        self.captures_file = captures_file
 
         self.base_dir = bd
                 
@@ -74,11 +78,14 @@ class ParallelProcessor():
         self.y_range = (-self.l, self.l)
 
         if self.rank == 0:
-            # This should only be run once to process the RATPAC2 output files. After that processData() produces and saves numpy files with the IBD vertices and neutron capture vertices that may be read by readData() and used by the program much more expediently.
-            #self.processData()
-
-            # This reads the data from the numpy data files produced by processData(). The must run successfully to perform analysis using this code.
-            self.readData()            
+            # processData() turns the raw RATPAC2 ASCII into the numpy files;
+            # readData() loads those numpy files for analysis. Both are now
+            # flag-gated so a 10M processing run can skip the (not-yet-existing)
+            # load step. Defaults (process=False, load=True) preserve prior behavior.
+            if process:
+                self.processData()
+            if load:
+                self.readData()
 
         # Allocates an equal part of the circle to each core.
         self.all_angles = np.arange(-180, 180)
