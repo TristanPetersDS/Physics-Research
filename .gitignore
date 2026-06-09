@@ -42,3 +42,9 @@ Thumbs.db
 # REFERENCES/ holds third-party papers/theses (copyright + ~720 MB); kept
 # local only. Force-add a specific file if ever needed: `git add -f <path>`
 REFERENCES/
+
+# --- Generated 10M analysis arrays (each ~240 MB, over GitHub's limit) ----
+fid_10M_unfiltered_*.npy
+
+# --- Extracted raw 10M ASCII (tens of GB; re-extractable from the tarball) -
+10M_raw/
