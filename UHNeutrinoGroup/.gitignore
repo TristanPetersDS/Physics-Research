@@ -1,0 +1,5 @@
+# Large raw RATPAC2 simulation bundles pulled from mtc-b — do NOT commit.
+# These are multi-GB archives (e.g. the 16 GB 10M money-plot merged run);
+# they are processed locally into events/*.npy, not version-controlled.
+res_10M_001wt_ref_merged.tar.gz
+*_merged.tar.gz
