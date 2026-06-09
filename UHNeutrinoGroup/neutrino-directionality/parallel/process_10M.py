@@ -12,6 +12,8 @@ import sys
 
 import numpy as np
 
+from mpi4py import MPI
+
 from main import ParallelProcessor
 from validation import summarize, format_table
 
@@ -23,11 +25,17 @@ C1 = "events/fid_1M_unfiltered_captures.npy"
 
 
 def main():
+    if MPI.COMM_WORLD.Get_size() > 1:
+        sys.exit("ERROR: run process_10M.py single-process (python process_10M.py), not under mpiexec.")
+
     truth = os.path.join(RAW, "truth.txt")
     neutrons = os.path.join(RAW, "neutrons.txt")
     for p in (truth, neutrons):
         if not os.path.exists(p):
             sys.exit(f"ERROR: {p} not found. Extract the tarball first (see plan Task 6).")
+    for p in (V1, C1):
+        if not os.path.exists(p):
+            sys.exit(f"ERROR: 1M reference array {p} not found. Run the 1M analysis first.")
 
     # process=True runs the parser; load=False skips readData (10M npy doesn't exist yet).
     ParallelProcessor(
@@ -42,8 +50,15 @@ def main():
     print(format_table(s1, s10))
 
     assert s10["counts_equal"], "10M vertex/capture counts differ"
+    assert s10["n_vertices"] > s1["n_vertices"], (
+        f"10M dataset ({s10['n_vertices']} events) is not larger than 1M "
+        f"({s1['n_vertices']} events)"
+    )
     rel = abs(s10["avg_track_length"] - s1["avg_track_length"]) / s1["avg_track_length"]
-    assert rel < 0.05, f"avg track length deviates {rel:.1%} from 1M (>5%)"
+    assert rel < 0.05, (
+        f"avg track length deviates {rel:.1%} from 1M baseline "
+        f"(10M={s10['avg_track_length']:.2f} mm, 1M={s1['avg_track_length']:.2f} mm, threshold=5%)"
+    )
     print("\nVALIDATION PASSED")
 
 
