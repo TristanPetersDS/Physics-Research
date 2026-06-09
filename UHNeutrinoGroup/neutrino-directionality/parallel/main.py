@@ -121,21 +121,18 @@ class ParallelProcessor():
 
             ts = time.time()
 
-            i = 0
             for line in f:
-                if i < 4:
-                    pass
-                else:
-                    try:
-                        elems = line.split()
-                        if elems[1] == "0":
-                            mcx, mcy, mcz = float(elems[5]), float(elems[6]), float(elems[7])
-                            self.vertices.append([mcx, mcy, mcz])
-                    except Exception as err:
-                        print(elems)
-                        print(err)
-
-                i += 1
+                elems = line.split()
+                if len(elems) < 8:
+                    continue
+                # Skip header line(s): a data row's Instance column is an int.
+                try:
+                    instance = int(elems[1])
+                except ValueError:
+                    continue
+                if instance == 0:
+                    mcx, mcy, mcz = float(elems[5]), float(elems[6]), float(elems[7])
+                    self.vertices.append([mcx, mcy, mcz])
 
             print(f"Time elapsed: {time.time() - ts}")
 
@@ -151,30 +148,28 @@ class ParallelProcessor():
 
             ts = time.time()
 
-            i = 0
-            prev_line = ""
+            prev_data_line = None  # last seen DATA line (never a header)
             for line in f:
-                if i < 4:
-                    pass
-                else:
-                    try:
-                        elems = line.split()
-                        if elems[1] == "0":
-                            prev_elems = prev_line.split()
-                            if len(prev_elems) > 0:
-                                px, py, pz = float(prev_elems[3]), float(prev_elems[4]), float(prev_elems[5])
-                                self.captures.append([px, py, pz])
-                    except Exception as err:
-                        prev_elems = prev_line.split()
-                        px, py, pz = float(prev_elems[3]), float(prev_elems[4]), float(prev_elems[5])
-                        self.captures.append([px, py, pz])
-
-                        print(elems)
-                        print(err)
-
-                prev_line = line
-                
-                i += 1
+                elems = line.split()
+                if len(elems) < 6:
+                    continue
+                # Skip header line(s): a data row's Instance column is an int.
+                try:
+                    instance = int(elems[1])
+                except ValueError:
+                    continue
+                # A new event (Instance 0) means the PREVIOUS event just ended;
+                # its last track step is the neutron capture location.
+                if instance == 0 and prev_data_line is not None:
+                    pe = prev_data_line.split()
+                    px, py, pz = float(pe[3]), float(pe[4]), float(pe[5])
+                    self.captures.append([px, py, pz])
+                prev_data_line = line
+            # Flush the final event (its last step is the last line of the file).
+            if prev_data_line is not None:
+                pe = prev_data_line.split()
+                px, py, pz = float(pe[3]), float(pe[4]), float(pe[5])
+                self.captures.append([px, py, pz])
 
             print(f"Time elapsed: {time.time() - ts}")
 

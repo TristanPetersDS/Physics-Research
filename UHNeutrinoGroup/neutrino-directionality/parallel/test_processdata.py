@@ -1,4 +1,5 @@
 import os
+import shutil
 import tempfile
 import unittest
 
@@ -33,6 +34,9 @@ class TestProcessData(unittest.TestCase):
         with open(self.neut, "w") as f:
             f.write(NEUTRONS)
 
+    def tearDown(self):
+        shutil.rmtree(self.d, ignore_errors=True)
+
     def _make(self):
         return ParallelProcessor(
             n=10, dx=50, gs=9,
@@ -46,6 +50,23 @@ class TestProcessData(unittest.TestCase):
         self.assertEqual(pp.vertices_file, self.vfile)
         self.assertEqual(pp.positron_file, self.truth)
         self.assertFalse(hasattr(pp, "coords"))  # load=False => readData() not run
+        self.assertEqual(pp.captures_file, self.cfile)
+        self.assertEqual(pp.neutron_file, self.neut)
+
+
+    def test_processdata_equal_counts_and_values(self):
+        pp = self._make()
+        pp.processData()
+        v = np.load(self.vfile)
+        c = np.load(self.cfile)
+        # Header is a single line here; both files describe 2 events.
+        self.assertEqual(len(v), 2, "expected 2 vertices")
+        self.assertEqual(len(c), 2, "expected 2 captures")
+        self.assertEqual(len(v), len(c), "vertex/capture counts must match")
+        # vertices = mc{x,y,z} of each Instance==0 positron row
+        np.testing.assert_allclose(v, [[0.0, 0.0, 0.0], [5.0, 1.0, 0.0]])
+        # captures = last track step of each event (3,4,0) and (13,4,0)
+        np.testing.assert_allclose(c, [[3.0, 4.0, 0.0], [13.0, 4.0, 0.0]])
 
 
 if __name__ == "__main__":
