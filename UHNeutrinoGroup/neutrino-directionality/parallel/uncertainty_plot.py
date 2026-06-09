@@ -11,6 +11,7 @@ Description: Works with the angular uncertainty output of 'main.py' to produce a
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
+from palette import SEG_COLOR
 
 save = False
 center = True
@@ -116,9 +117,9 @@ dt_150 = dt_150[1:]
 de_150 = de_150[1:]
     
 # Plot raw data.
-plt.errorbar(dx_5, dt_5, yerr=de_5, fmt="r.--", capsize=3)
-plt.errorbar(dx_50, dt_50, yerr=de_50, fmt="g.--", capsize=3)
-plt.errorbar(dx_150, dt_150, yerr=de_150, fmt="b.--", capsize=3)
+plt.errorbar(dx_5, dt_5, yerr=de_5, fmt=".--", color=SEG_COLOR[5], capsize=3)
+plt.errorbar(dx_50, dt_50, yerr=de_50, fmt=".--", color=SEG_COLOR[50], capsize=3)
+plt.errorbar(dx_150, dt_150, yerr=de_150, fmt=".--", color=SEG_COLOR[150], capsize=3)
 
 # Reassign data arrays.
 x = np.array(dx_5)
@@ -208,9 +209,9 @@ y2_fit = 10**model_arctan_4p(x2_fit, a2_fit, b2_fit, c2_fit, d2_fit)
 y3_fit = 10**model_arctan_4p(x3_fit, a3_fit, b3_fit, c3_fit, d3_fit)
 
 # Plot the data oer the fit functions.
-plt.plot(x_fit, y_fit, "r-", lw=2, label="$\\Delta x = 5 \\,\\mathrm{mm}$")
-plt.plot(x2_fit, y2_fit, "g-", lw=2, label="$\\Delta x = 50 \\,\\mathrm{mm}$")
-plt.plot(x3_fit, y3_fit, "b-", lw=2, label="$\\Delta x = 150 \\,\\mathrm{mm}$")
+plt.plot(x_fit, y_fit, "-", color=SEG_COLOR[5], lw=2, label="$\\Delta x = 5 \\,\\mathrm{mm}$")
+plt.plot(x2_fit, y2_fit, "-", color=SEG_COLOR[50], lw=2, label="$\\Delta x = 50 \\,\\mathrm{mm}$")
+plt.plot(x3_fit, y3_fit, "-", color=SEG_COLOR[150], lw=2, label="$\\Delta x = 150 \\,\\mathrm{mm}$")
 
 plt.xscale("log")
 plt.yscale("log")

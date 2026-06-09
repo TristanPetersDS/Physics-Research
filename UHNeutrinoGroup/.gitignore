@@ -3,3 +3,6 @@
 # they are processed locally into events/*.npy, not version-controlled.
 res_10M_001wt_ref_merged.tar.gz
 *_merged.tar.gz
+
+# Okabe-Ito recolor preview renders (scratch)
+okabe_ito_output/

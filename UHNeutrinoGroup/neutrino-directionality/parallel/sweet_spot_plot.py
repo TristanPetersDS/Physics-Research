@@ -11,6 +11,7 @@ Description: Works with the angular uncertainty output of 'main.py' to produce a
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
+from palette import OKABE_ITO
 
 save = False
 
@@ -69,7 +70,7 @@ y_fit = cubic(x_fit, *params)
 
 # Plot raw data over the fitted curve.
 plt.errorbar(dx, dt, yerr=err, fmt=".", color="black", capsize=3, label="Data")
-plt.plot(x_fit, y_fit, "r-", label=f"Polyfit min at {int(minimum_loc)} mm")
+plt.plot(x_fit, y_fit, "-", color=OKABE_ITO["vermillion"], label=f"Polyfit min at {int(minimum_loc)} mm")
 
 plt.xlabel("Segment size $\\Delta x$ (mm)")
 plt.ylabel("Angular uncertainty $\\delta \\vartheta$ (${}^\\circ$)")

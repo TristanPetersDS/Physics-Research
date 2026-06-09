@@ -11,6 +11,7 @@ Description: Works with the angular uncertainty output of 'main.py' to produce a
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
+from palette import SEG_COLOR
 
 save = False
 center = False
@@ -115,9 +116,9 @@ dt_150 = dt_150[1:]
 de_150 = de_150[1:]
     
 # Plot raw data.
-plt.errorbar(dx_5, dt_5, yerr=de_5, fmt="r.-", capsize=3, label="$\Delta x$ = 5 mm")
-plt.errorbar(dx_50, dt_50, yerr=de_50, fmt="g.-", capsize=3, label="$\Delta x$ = 50 mm")
-plt.errorbar(dx_150, dt_150, yerr=de_150, fmt="b.-", capsize=3, label="$\Delta x$ = 150 mm")
+plt.errorbar(dx_5, dt_5, yerr=de_5, fmt=".-", color=SEG_COLOR[5], capsize=3, label="$\Delta x$ = 5 mm")
+plt.errorbar(dx_50, dt_50, yerr=de_50, fmt=".-", color=SEG_COLOR[50], capsize=3, label="$\Delta x$ = 50 mm")
+plt.errorbar(dx_150, dt_150, yerr=de_150, fmt=".-", color=SEG_COLOR[150], capsize=3, label="$\Delta x$ = 150 mm")
 
 plt.xscale("log")
 plt.yscale("log")
@@ -129,7 +130,7 @@ plt.legend(framealpha=1.0)
 plt.grid(True, which="both", linestyle="--", linewidth=0.5)
 
 if save:
-    plt.savefig("06_money_plot_fit_arctan_log_4p.pdf", format="pdf", bbox_inches="tight")
+    plt.savefig("usable_money_plot.pdf", format="pdf", bbox_inches="tight")
 
 plt.show()
 
