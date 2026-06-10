@@ -215,19 +215,13 @@ class ParallelProcessor():
         # Create an empty array used for the shuffling algorithm in sampleData().
         self.coords_buf = np.empty((0, 3), dtype=self.coords.dtype)
 
-        # Sort to find usable events (excluding center element).
+        # Sort to find usable events (excluding center element). Vectorized
+        # 2d-radius cut; identical to the per-point loop but far faster on the
+        # full fiducial dataset.
         R = self.seg_size / np.sqrt(2)
 
-        self.usable_coords = []
-        for c in self.coords:
-            x, y, z = c
-
-            r = np.sqrt(x**2 + y**2)
-
-            if r > R:
-                self.usable_coords.append(c)
-
-        self.usable_coords = np.array(self.usable_coords)
+        r_xy = np.hypot(self.coords[:, 0], self.coords[:, 1])
+        self.usable_coords = self.coords[r_xy > R]
 
         self.usable_coords_buf = np.empty((0, 3), dtype=self.usable_coords.dtype)
 
@@ -311,32 +305,22 @@ class ParallelProcessor():
             print("ParallelProcessor class method: rotateCoords")
 
         """
-        Rotates the given coordinate(s).
+        Rotates the given coordinate(s). Vectorized form of the per-point
+        rotation below; produces identical results (verified np.allclose vs the
+        original Python loop) but is ~tens of x faster for large samples.
         """
 
-        x_rot = []
-        y_rot = []
+        x_coords = np.asarray(x_coords)
+        y_coords = np.asarray(y_coords)
 
-        for x, y in zip(x_coords, y_coords):
+        # Distance and initial angle of each capture in 2d.
+        r = np.hypot(x_coords, y_coords)
+        theta0 = np.arctan2(y_coords, x_coords)
 
-            # Distance calculation in 2d.
-            r = np.sqrt(x**2 + y**2)
-
-            # Initial angle of capture.
-            theta0 = np.arctan2(y, x)
-
-            # Rotation calculation.
-            phi = -theta * np.pi / 180.0
-
-            # Coordinate transformation.
-            xprime = r * np.cos(theta0 - phi)
-            yprime = r * np.sin(theta0 - phi)
-
-            x_rot.append(xprime)
-            y_rot.append(yprime)
-
-        x_rot = np.array(x_rot)
-        y_rot = np.array(y_rot)
+        # Rotation calculation and coordinate transformation.
+        phi = -theta * np.pi / 180.0
+        x_rot = r * np.cos(theta0 - phi)
+        y_rot = r * np.sin(theta0 - phi)
 
         return x_rot, y_rot
 
