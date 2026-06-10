@@ -128,6 +128,27 @@ in-figure font size maps predictably to printed size.
 
 ## 6. LaTeX-side changelog (applied directly, no regeneration needed)
 
+- **2026-06-10 — block 2 detector gallery + Fig 2 enlarge:**
+  - Replaced the ψ-geometry `picture` diagram with a four-detector geometry gallery
+    (Double Chooz / Checker-3D / NuLat5 / SANTA — the 3D group of Fig 2's legend), assets
+    staged as `fig/detector_*` ([b]-aligned minipages, shared caption, `height=6.5cm`).
+  - Enlarged the Chooz angular-resolution plot `0.40 → 0.47\linewidth`.
+- **2026-06-10 — block 4 poster-format rework:**
+  - Bullets → numbered 5-step algorithm (`enumerate`; green bold numbers via new
+    `\setlist[enumerate,1]` in the preamble — same no-marker footgun defense as itemize).
+  - Added Paper B's boxed $L^2$-norm equation as step 4.
+  - The two `picture` diagrams re-cropped/re-scaled to matched heights
+    (panel (b)'s picture box tightened to its drawn content `(6.7,4.3)(2.3,-0.1)`).
+- **2026-06-10 — caption/whitespace pass (all blocks):**
+  - Captions now live in minipages aligned with their figures (blocks 1, 2, 3, 5 money plot).
+  - block 3: RAT-PAC render enlarged + centered; caption tightened (was overflowing the
+    block border at the narrower caption width — re-balanced to image `0.50\linewidth`,
+    caption minipage `0.62\linewidth`).
+  - block 1: `\vfill` above/below the (fixed-size 1:1) figure band restored.
+- **2026-06-10 — banner logos:** circular white discs via new `\titlelogocirc`,
+  positioned absolutely in the banner TikZ overlay; UH seal + black LLNL "LL" icon are
+  now true vectors (see CLAUDE.md "Logos workflow"). MTV remains the one raster logo.
+
 - **2026-05-31 — block 5 top region (money plot):**
   - Fixed silent-shrink (CLAUDE.md footgun #6): `\includegraphics[width=0.45\linewidth]`
     → `width=\linewidth` inside its minipage, so the plot fills its ~17 cm half instead of ~7 cm.

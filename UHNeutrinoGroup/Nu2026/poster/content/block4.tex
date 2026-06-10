@@ -1,182 +1,142 @@
-\begin{itemize}
-    \item Generate reference data for all incident angles \\ This is done by rotating the grid overlay on simulation data and then performing the binning described below
-    \item Bin prompt and delayed displacement vectors in matrix form by counting the number of voxels separating the IBD vertex and the capture vertex. Normalize all matrices for reference angles
-    \item Create binning matrix for data set and normalize it
-    \item Compute the \(L^2\) norm for the matrix differences for all reference angles
-    \item Fit \(\alpha\left|\sin{\left(\frac{\theta-\theta_0}{2}\right)}\right|\) to \(L^2\) norms as a function of angle. The minimum gives the \(\theta_0\) fit parameter for the direction of the neutrino source.
-\end{itemize}
+% ---- Algorithm (Paper B), as numbered steps ------------------------
+\begin{enumerate}
+    \item Generate reference data for every incident angle by rotating the
+          grid overlay on simulated events
+    \item Bin prompt--delayed displacement vectors into matrices, counting
+          the voxels separating the IBD vertex and the capture vertex;
+          normalize each reference matrix
+    \item Build and normalize the binning matrix of the data set
+          (unknown angle)
+    \item Compute the \(L^2\) norm of the matrix difference at each
+          reference angle \(\vartheta\)~[1]:
+    \begin{equation}
+      \boxed{\;L^2_i(\vartheta) = \sqrt{\sum_{k,j}\,(x_{kj})_i^2}\;}
+      \qquad (x_{kj})_i \in [\mathrm{DifferenceSet}_i](\vartheta)
+      \label{eq:l2norm}
+    \end{equation}
+    \item Fit \(\alpha\left|\sin\left(\frac{\vartheta-\vartheta_0}{2}\right)\right|\)
+          to the \(L^2\) norms as a function of angle; the minimum gives the
+          source direction \(\vartheta_0\)
+\end{enumerate}
 
-\vspace{2cm}
+\vfill
 
-\begin{figure}[ht]
-        \setlength{\unitlength}{.04\linewidth}
-        
-    \begin{minipage}[t]{0.48\linewidth}
-        \centering
-\begin{picture}(10,5)
+% ---- Geometry + rotation diagrams, side by side --------------------
+% Both picture environments are cropped to their drawn content and
+% resized so the two panels render at matched heights; the shared
+% caption spans the full row (minipage-aligned).
+\begin{minipage}{\linewidth}
+\centering
+\begin{minipage}[b]{0.55\linewidth}
+    \centering
+    \setlength{\unitlength}{0.087\linewidth}
+\begin{picture}(10,5.4)(0,-0.2)
   \footnotesize
-        \multiput(5,0)(.5,0){9}{\color{black}\line(0,1){4}} 
-        \multiput(5,0)(0,0.5){9}{\color{black}\line(1,0){4}} 
+        \multiput(5,0)(.5,0){9}{\color{black}\line(0,1){4}}
+        \multiput(5,0)(0,0.5){9}{\color{black}\line(1,0){4}}
 
-        \multiput(5,4)(.5,0){9}{\color{black}\line(1,1){1}} 
-        \multiput(9,0)(0,.5){9}{\color{black}\line(1,1){1}} 
+        \multiput(5,4)(.5,0){9}{\color{black}\line(1,1){1}}
+        \multiput(9,0)(0,.5){9}{\color{black}\line(1,1){1}}
 
         \put(10,1){\line(0,1){4}}
         \put(6,5){\line(1,0){4}}
 
-        
+
           \thicklines
-        \multiput(6.5, 2.50)(.025,0){20}{\color{black}\line(0,1){0.5}} 
-        \multiput(0, 5)(.025,0){20}{\color{black}\line(0,-1){0.5}} 
-        
-        \multiput(6, 1.50)(.025,0){20}{\color{gray}\line(0,1){0.5}} 
-        \multiput(0, 4.25)(.025,0){20}{\color{gray}\line(0,-1){0.5}} 
+        \multiput(6.5, 2.50)(.025,0){20}{\color{black}\line(0,1){0.5}}
+        \multiput(0, 5)(.025,0){20}{\color{black}\line(0,-1){0.5}}
+
+        \multiput(6, 1.50)(.025,0){20}{\color{gray}\line(0,1){0.5}}
+        \multiput(0, 4.25)(.025,0){20}{\color{gray}\line(0,-1){0.5}}
           \thinlines
 
         \put(0.8,4.7){prompt segment}
         \put(0.8,3.9){delayed segment}
 
 
-        \put(1,1){\vector(-1,-1){1}} 
-        \put(1,1){\vector(0,1){2}} 
-        \put(1,1){\vector(1,0){2}} 
+        \put(1,1){\vector(-1,-1){1}}
+        \put(1,1){\vector(0,1){2}}
+        \put(1,1){\vector(1,0){2}}
 
-        \put(1,1){\vector(2,1){2}} 
-        \put(1,1){\arc[0,26]{1}} 
-        \put(1,1){\arc[0,26]{.95}} 
+        \put(1,1){\vector(2,1){2}}
+        \put(1,1){\arc[0,26]{1}}
+        \put(1,1){\arc[0,26]{.95}}
 
-        
+
         \put(0,0.3){$z$}
         \put(0.7,2.8){$y$}
         \put(2.8,.7){$x$}
         \put(2.7,2){$\nu$}
-        
-       \put(6.75,-0.1){\color{black!90}\vector(0,1){4.7}} 
+
+       \put(6.75,-0.1){\color{black!90}\vector(0,1){4.7}}
         \multiput(6.7,0.)(0,.25){16}{\color{blue}\line(1,0){0.1}}
-        \put(4.8,2.75){\color{black!90}\vector(1,0){4.8}} 
-        \multiput(5,2.7)(.25,0){16}{\color{blue}\line(0,1){0.1}} 
+        \put(4.8,2.75){\color{black!90}\vector(1,0){4.8}}
+        \multiput(5,2.7)(.25,0){16}{\color{blue}\line(0,1){0.1}}
 
         \put(6.8,4.55){\color{black}$y'$}
         \put(9.2,2.4){\color{black}$x'$}
         \put(5.85,2.1){\color{black}$\theta_n^i$}
 
 
-        \put(6.75,2.75){\color{blue}\arc[0,245]{0.65}} 
-        \put(6.75,2.75){\color{blue}\vector(-1,-2){0.5}} 
+        \put(6.75,2.75){\color{blue}\arc[0,245]{0.65}}
+        \put(6.75,2.75){\color{blue}\vector(-1,-2){0.5}}
 
-        
-        \multiput(3.5, 0.5)(0,1){4}{\color{black}\vector(2,1){1}} 
-        
-       \put(2,0){neutrino wind} 
+
+        \multiput(3.5, 0.5)(0,1){4}{\color{black}\vector(2,1){1}}
+
+       \put(2,0){neutrino wind}
         \put(2.2,1.2){$\vartheta_\nu$}
-\end{picture}
-
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.48\linewidth}
-        \centering
-
-%        \setlength{\unitlength}{.1\linewidth}
-\begin{picture}(10,4)
+\end{picture}\\[4pt]
+    (a) segment geometry
+\end{minipage}%
+\hfill
+\begin{minipage}[b]{0.42\linewidth}
+    \centering
+    \setlength{\unitlength}{0.133\linewidth}
+\begin{picture}(6.7,4.3)(2.3,-0.1)
   \footnotesize
 
-        \multiput(3,0.5)(.5,0){6}{\color{black}\line(0,1){2.5}} 
-        \multiput(3,0.5)(0,0.5){6}{\color{black}\line(1,0){2.5}} 
+        \multiput(3,0.5)(.5,0){6}{\color{black}\line(0,1){2.5}}
+        \multiput(3,0.5)(0,0.5){6}{\color{black}\line(1,0){2.5}}
 
 
-        
+
           \thicklines
         \multiput(4., 1.50)(.025,0){20}{\color{black}\line(0,1){0.5}} % vertical
           \thinlines
 
- 
-        \put(4.25,0){\color{black}\vector(0,1){4}} 
-        \put(2.5,1.75){\color{black}\vector(1,0){5}} 
+
+        \put(4.25,0){\color{black}\vector(0,1){4}}
+        \put(2.5,1.75){\color{black}\vector(1,0){5}}
         \multiput(4.2,0.25)(0,.5){7}{\color{blue}\line(1,0){0.1}}
-        \multiput(2.75,1.7)(.5,0){7}{\color{blue}\line(0,1){0.1}} 
+        \multiput(2.75,1.7)(.5,0){7}{\color{blue}\line(0,1){0.1}}
 
         \put(3.9,3.7){\color{black}$y$}
         \put(7.3,1.4){\color{black}$x$}
 
 
-        \put(4.25,1.75){\color{blue}\arc[0,45]{2}} 
-        \put(2.5,0){\color{blue}\vector(1,1){4}} 
+        \put(4.25,1.75){\color{blue}\arc[0,45]{2}}
+        \put(2.5,0){\color{blue}\vector(1,1){4}}
         \put(5.7,3.7){\color{black}$45^\circ$}
 
-        \put(2.5,0.5){\color{blue}\vector(7,5){5}} 
-        \put(2.5,1){\color{blue}\vector(7,3){5}} 
-        \put(2.5,1.5){\color{blue}\vector(7,1){5}} 
+        \put(2.5,0.5){\color{blue}\vector(7,5){5}}
+        \put(2.5,1){\color{blue}\vector(7,3){5}}
+        \put(2.5,1.5){\color{blue}\vector(7,1){5}}
 
-        \put(2.5,1.25){\color{red}\vector(7,2){5}} 
+        \put(2.5,1.25){\color{red}\vector(7,2){5}}
         \put(7.5,2.5){\color{red}$\theta_\nu^{exp}$}
          \put(7.5,2.){\color{blue}$\theta_\nu^{MC_1}$}
         \put(7.5,3){\color{blue}$\theta_\nu^{MC_2}$}
         \put(7.5,3.7){\color{blue}$\theta_\nu^{MC_3}$}
-     
 
-\end{picture}
+
+\end{picture}\\[4pt]
+    (b) reference-angle comparison
 \end{minipage}
-        \caption{Diagram explaining the prompt-delayed segment geometry, as well as neutrino and axes orientation. 
-%        In this work we assume that neutrino ``wind'' is in $xy$ plane, at an angle $\nu$ with the $x$ axis.
-%        The prompt and delayed segment in this diagram shown for illustrative purposes; the actual separation depends on the segment size --- for large segments, prompt and delayed events would happen in the same segment. It is also illustrated that capture is not necessarily aligned with the neutrino beam (only on average it is the case as discussed in this paper).
-%        To study the angular dependence we vary the angle of neutrino with respect to the detector's $x$ and $y$ axes (i.e. rotation of the detector along $z$ axis).}
-}
-        \label{fig:phi_def}
-\end{figure}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% \begin{figure}[ht!]
-%         \setlength{\unitlength}{.1\linewidth}
-% \begin{picture}(10,4)
-
-%         \multiput(3,0.5)(.5,0){6}{\color{black}\line(0,1){2.5}} 
-%         \multiput(3,0.5)(0,0.5){6}{\color{black}\line(1,0){2.5}} 
-
-
-        
-%           \thicklines
-%         \multiput(4., 1.50)(.025,0){20}{\color{black}\line(0,1){0.5}} % vertical
-%           \thinlines
-
- 
-%         \put(4.25,0){\color{black}\vector(0,1){4}} 
-%         \put(2.5,1.75){\color{black}\vector(1,0){5}} 
-%         \multiput(4.2,0.25)(0,.5){7}{\color{blue}\line(1,0){0.1}}
-%         \multiput(2.75,1.7)(.5,0){7}{\color{blue}\line(0,1){0.1}} 
-
-%         \put(3.9,3.7){\color{black}$y$}
-%         \put(7.3,1.4){\color{black}$x$}
-
-
-%         \put(4.25,1.75){\color{blue}\arc[0,45]{2}} 
-%         \put(2.5,0){\color{blue}\vector(1,1){4}} 
-%         \put(5.7,3.7){\color{black}$45^\circ$}
-
-%         \put(2.5,0.5){\color{blue}\vector(7,5){5}} 
-%         \put(2.5,1){\color{blue}\vector(7,3){5}} 
-%         \put(2.5,1.5){\color{blue}\vector(7,1){5}} 
-
-%         \put(2.5,1.25){\color{red}\vector(7,2){5}} 
-%         \put(7.5,2.5){\color{red}$\theta_\nu^{exp}$}
-%          \put(7.5,2.){\color{blue}$\theta_\nu^{MC_1}$}
-%         \put(7.5,3){\color{blue}$\theta_\nu^{MC_2}$}
-%         \put(7.5,3.7){\color{blue}$\theta_\nu^{MC_3}$}
-     
-
-% \end{picture}
-% \caption{A diagram explaining the idea behind a pattern-matching algorithm for IBD segmented detectors. The experimental/empirical data set (with {\it a priori} unknown neutrino angle $\theta_\nu^{exp}$) is compared against theoretical/simulation data sets (of known neutrino angles $\theta_\nu^{MC_i}$). Due to the symmetry and square geometry unique distributions only obtained between 0$^\circ$ and 45$^\circ$ angles. MC$_1$, MC$_2$, and MC$_3$ denote Monte Carlo data sets corresponding to that particular neutrino angle. The 5$\times$5 grid is shown for illustrative purposes.}
-% \label{fig_algo_skewers}
-% \end{figure}
+\vspace{0.2cm}
+\captionof{figure}{(a) Prompt--delayed segment geometry, with the neutrino
+``wind'' at angle $\vartheta_\nu$ in the $xy$ plane. (b) Reference sets at
+known angles $\theta_\nu^{MC_i}$ compared against data at unknown $\theta_\nu^{exp}$.}
+\label{fig:phi_def}
+\end{minipage}

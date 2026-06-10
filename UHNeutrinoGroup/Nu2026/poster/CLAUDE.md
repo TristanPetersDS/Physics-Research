@@ -3,6 +3,8 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 > **Current state (2026-05-31):** the layout overhaul (equal margins/columns + 28 pt font floor), the block-1 figure at true 1:1 physical scale, and the block-5 Figure 6 resize are all complete. Build with `latexmk -pdf poster.tex`. The full session log, Overleaf-merge caveats (especially the page-size line), insights, and remaining TODOs are in **`docs/superpowers/specs/2026-05-31-session-handoff.md`** — read that first.
+>
+> **2026-06-10 update:** banner logos are now circular white discs positioned absolutely inside the banner TikZ overlay (`\titlelogocirc`; UH seal + LLNL "LL" icon are true vectors, see "Logos workflow"); block 2 swapped the ψ-diagram for a four-detector geometry gallery (`fig/detector_*`); block 4 is a numbered 5-step algorithm with the Paper B $L^2$-norm equation; captions sit in minipages aligned with their figures; `\postermargin` is now **0.75 cm**. In-place builds work via the gitignored `nu2026_poster -> .` symlink (QR path quirk). Session log, Overleaf-sync asset list, and open TODOs: **`docs/superpowers/specs/2026-06-10-session-handoff.md`** — for current work read that one first.
 
 ## What this repository is
 
@@ -38,11 +40,13 @@ sudo apt install texlive-latex-base texlive-latex-extra \
 
 Beamer + `beamerposter` + TikZ + `siunitx` + `mdframed` + `enumitem` + `overpic` + `pict2e` are load-bearing — confirm with `kpsewhich beamerposter.sty` if a build fails on a fresh machine.
 
-The LLNL logo is a PDF rendered from a cropped SVG. To re-render after editing the SVG (requires `librsvg2-bin` for `rsvg-convert`):
+The in-use LLNL banner logo is the black "LL" icon; re-render after editing its SVG (requires `librsvg2-bin` for `rsvg-convert`):
 
 ```bash
-rsvg-convert -f pdf -o figures/logos/llnl.pdf figures/logos/llnl_cropped.svg
+rsvg-convert -f pdf -o figures/logos/llnl_icon_black.pdf figures/logos/llnl_icon_black.svg
 ```
+
+(The legacy blue wordmark `llnl.pdf` regenerates the same way from `llnl_cropped.svg`.)
 
 The cropping pipeline (auto-detect SVG content bbox, rewrite viewBox) is documented inline in the "Logos workflow" section below.
 
@@ -112,7 +116,7 @@ Block file numbering (`block1`…`block5`) follows top-to-bottom-per-column. Blo
 
 **Two figure directories, with distinct roles.** This is the most common source of confusion:
 
-- `fig/` — the directory all current `content/block*.tex` files reference. PDF-first (matplotlib exports from the Paper A/B analysis), plus `RAT_PAC_IBD_run_6_5_crop.png` for the IBD visualization. Multi-panel money-plot / FND-spread assets live in `fig/parallel/`.
+- `fig/` — the directory all current `content/block*.tex` files reference. PDF-first (matplotlib exports from the Paper A/B analysis), plus `RAT_PAC_IBD_run_6_5_crop.png` for the IBD visualization and the block-2 detector gallery (`detector_dc.pdf` tight-cropped from `figures/dc_geo_plain_white_gray.eps`; `detector_{checker3d,nulat5,santa}.png` trimmed copies of the `figures/` geometry renders). Multi-panel money-plot / FND-spread assets live in `fig/parallel/`.
 - `figures/` — title-banner logos (`figures/logos/`) plus a large pile of legacy raster/vector assets from earlier drafts. Nothing under `figures/` (except `figures/logos/`) is currently `\includegraphics`-d by the build. Treat as archive unless you are deliberately resurrecting an old figure.
 
 When adding a new figure, drop it in `fig/` (PDF preferred) and reference it as `fig/yourfile.pdf`. Check `docs/figure-patterns.md` for reusable inclusion patterns (overpic annotation overlays for the RAT-PAC visualization in `block3.tex`, side-by-side tabular with arrow icons for the binning rotation panels in `block3.tex`/`block5.tex`, picture-primitive geometry diagrams for the prompt-delayed segment schematic in `block4.tex`).
@@ -151,7 +155,7 @@ Five content blocks tile the body region in a 3-col grid; columns 1 and 2 are sp
 Column widths: all three columns are equal — `\colwidth` = `(\paperwidth − 4\postermargin)/3` ≈ 38.64 cm — and the gap between columns is `\postermargin` (the unified margin M). The three column `minipage`s are wrapped in `\centerline{…}`, which centers them in the page-centered text block so the left/right page margins also come out equal to M with no hardcoded offset.
 
 Layout constants (in `_preamble.tex`), all driven by two knobs:
-- `\postermargin` = **1.5 cm** (M) — the single unified margin used for every gap: page top/bottom/left/right, both inter-column gaps, and the vertical gap between the two stacked rblocks (`\rblockgap` = `\postermargin`).
+- `\postermargin` = **0.75 cm** (M) — the single unified margin used for every gap: page top/bottom/left/right, both inter-column gaps, and the vertical gap between the two stacked rblocks (`\rblockgap` = `\postermargin`). (Was 1.5 cm until 2026-06; derived values below shift accordingly.)
 - `\blockinnerpad` = **0.8 cm** (P) — internal box padding: the gap below each title ribbon (block-begin `\vspace`) and the left/right inset (`\blockpadding` = `\blockinnerpad`).
 - `\bodyheight` = `\dimexpr 68.44cm − 2\postermargin\relax` ≈ **65.44 cm** — height below the banner (`68.44 = 91.44 − 17.4 banner − 5.6 footer`).
 - `\rblockheight` = `(\bodyheight − \rblockgap) / 2` ≈ **31.97 cm** — derived; fixes each rblock's height.
@@ -166,21 +170,23 @@ The footer (`content/footer.tex`) hand-types both the reference list and the ack
 
 - Edit `content/footer.tex` directly; entries are numbered `[1]…[5]` and split across two minipages.
 - If you also want the BibTeX entries kept in sync for downstream use, mirror the change into `refs.bib` — but be aware nothing in the build reads `refs.bib`.
-- The QR code is embedded with `\includegraphics[width=2.75\linewidth]{nu2026_poster/content/ArXiV_QR_code.png}`. **The path prefix `nu2026_poster/` assumes the build is invoked from a parent directory** named `nu2026_poster/`; if you build directly inside the poster directory it will fail to find the QR image. Either (a) ensure the build is launched from the parent and the repo's directory name is `nu2026_poster`, or (b) shorten the path to `content/ArXiV_QR_code.png` for in-place builds. Verify after any move/rename.
+- The QR code is embedded with `\includegraphics[width=2.75\linewidth]{nu2026_poster/content/ArXiV_QR_code.png}`. **The path prefix `nu2026_poster/` matches the Overleaf project layout.** For in-place local builds a self-symlink `nu2026_poster -> .` exists in the poster directory (gitignored; recreate with `ln -sfn . nu2026_poster` if missing) so the same path resolves both locally and on Overleaf. Without it, the local build errors on the missing QR image.
 
 The acknowledgements LLNL release number is currently the placeholder **`LLNL-POST-XXXXXX`** — replace before final submission.
 
 ## Logos workflow
 
-Three logos live in `figures/logos/`:
+The three logos **in use** live in `figures/logos/`:
 
 | Logo | File | Notes |
 |------|------|-------|
-| UH Mānoa seal | `university_of_hawaii_at_manoa_logo-freelogovectors.net_.png` | Transparent PNG, 640×480 |
-| LLNL wordmark | `llnl.pdf` | Rendered from a cropped SVG via `rsvg-convert` |
-| MTV consortium | `MTV-logo-color.png` | Re-encoded from upstream WebP via Pillow |
+| UH Mānoa seal | `uh_seal_vector.pdf` | **True vector.** Cropped (via Ghostscript `PageOffset`) from the official seal+wordmark lockup PDF (`~/Downloads/university-of-hawaii-at-manoa-logo.pdf`) |
+| LLNL "LL" icon, black | `llnl_icon_black.pdf` (+ source `llnl_icon_black.svg`) | **True vector.** The two icon paths extracted from the wordmark SVG, recolored `#000`, viewBox tight-cropped, rendered with `rsvg-convert` |
+| MTV consortium | `MTV-logo-color.png` | Raster (2250 px ≈ 800+ DPI at print size — fine for print). Still the one non-vector logo; swap in an official vector if one is ever obtained |
 
-All three are wired into the title banner in `poster.tex` via `\titlelogo{w}{h}{path}` (macro in `config/_preamble.tex`). The macro wraps each image in a fixed-size cream-backed (`BlockBG!50!white`) rounded box at `(w cm) × (h cm)`, with 0.4 cm inner padding and `keepaspectratio`. Current sizes: UH 14×14 cm, LLNL 14×6.75 cm, MTV 14×6.75 cm (stacked). The cream backgrounds matter because most institutional logos ship with transparent backgrounds and would otherwise blend into the dark green title strip. Note that with `BlockBG` now equal to `#FFFFFF`, `BlockBG!50!white` resolves to pure white — there is no longer any actual cream tint behind the logos.
+Legacy files retained: `llnl.pdf` / `llnl_cropped.svg` (blue wordmark, no longer embedded), `lawrence-livermore-national-laboratory-logo-vector.svg` (upstream source for the icon extraction), `university_of_hawaii_at_manoa_logo-freelogovectors.net_.png` (old raster seal).
+
+All three are placed by `\titlelogocirc{d}{w}{path}` (macro in `config/_preamble.tex`): a tight **white circular disc** of diameter `d` cm with the image at `w` cm. `w` is separate from `d` so square marks (the LLNL "LL") can be inscribed without poking past the rim, while circular artwork (UH seal, MTV) runs close to the full diameter. Current calls: UH `{14}{13.3}`, LLNL `{7}{4.6}`, MTV `{7}{6.4}`. The discs are positioned **absolutely inside the banner TikZ overlay** in `poster.tex` (nodes anchored to `current page.north west/east`, vertically centered in the 16.8 cm green strip) — the banner `columns` wings are now empty placeholders that only preserve the title width. The old rounded-box `\titlelogo` macro is retained but unused.
 
 **LLNL re-render pipeline.** The upstream LLNL SVG had a 652×652 viewBox with content occupying only a narrow horizontal band (~6:1 aspect). Without cropping, the wordmark rendered as a tiny dot inside a large cream box. The crop pipeline (requires the upstream SVG to be re-fetched and placed at the indicated path):
 

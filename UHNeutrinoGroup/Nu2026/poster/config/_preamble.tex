@@ -55,7 +55,7 @@
   \begin{beamercolorbox}[wd=\linewidth,sep=0pt,leftskip=0pt,rightskip=0pt,colsep*=0pt]{block title}%
     \begin{minipage}[c][\ribbonheight][s]{\linewidth}%
       \vspace*{\fill}%
-      \hspace{\blockpadding}\usebeamerfont*{block title}\insertblocktitle\par%
+      \hspace{\blockpadding}\usebeamerfont*{block title}\strut\insertblocktitle\strut\par%
       \vspace*{0.28cm}%
     \end{minipage}%
   \end{beamercolorbox}%
@@ -75,7 +75,7 @@
 % =====================================================================
 % Unified layout knobs:  M = margin (every gap),  P = internal box padding
 \newlength{\postermargin}
-\setlength{\postermargin}{1.5cm}
+\setlength{\postermargin}{0.75cm}
 \newlength{\blockinnerpad}
 \setlength{\blockinnerpad}{0.8cm}
 \newlength{\colwidth}
@@ -121,6 +121,21 @@
           rounded corners=3pt] {%
       \includegraphics[width=\dimexpr#1 cm - 0.8cm\relax,
                        height=\dimexpr#2 cm - 0.8cm\relax,
+                       keepaspectratio]{#3}%
+    };
+  \end{tikzpicture}%
+}
+
+% ---- circular title-banner logo wrapper ----------------------------
+% \titlelogocirc{<circle diameter cm>}{<image width cm>}{<path>}
+% Tight white disc behind each logo. Image width is given separately so
+% square marks (LLNL "LL") can be inscribed without poking past the rim;
+% circular artwork (UH seal, MTV) can run close to the full diameter.
+\newcommand{\titlelogocirc}[3]{%
+  \begin{tikzpicture}
+    \node[fill=BlockBG!50!white, circle, inner sep=0pt,
+          minimum size=#1 cm] {%
+      \includegraphics[width=#2 cm, height=#2 cm,
                        keepaspectratio]{#3}%
     };
   \end{tikzpicture}%
@@ -191,6 +206,11 @@
 \setlist[itemize,2]{label=\color{UHGreen}\textendash,
                     leftmargin=1.2em,labelsep=0.4em,
                     itemsep=3pt,topsep=2pt,parsep=0pt}
+% Numbered steps (block 4 algorithm): explicit label= for the same reason
+% as itemize above -- beamerposter+enumitem renders no marker without it.
+\setlist[enumerate,1]{label=\color{UHGreen}\textbf{\arabic*.},
+                      leftmargin=1.6em,labelsep=0.5em,
+                      itemsep=5pt,topsep=2pt,parsep=0pt}
 
 \sisetup{detect-all=true}
 

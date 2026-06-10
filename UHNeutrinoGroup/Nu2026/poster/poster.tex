@@ -77,15 +77,21 @@
   \fill[UHGold]
     ([yshift=-16.8cm]current page.north west)
     rectangle ([yshift=-17.4cm]current page.north east);
+  % --- banner logos: absolutely positioned so the discs stay vertically
+  %     centered in the 16.8cm green strip regardless of title reflow.
+  \node at ([xshift=0.07\paperwidth,yshift=-8.4cm]current page.north west)
+    {\titlelogocirc{14}{13.3}{figures/logos/uh_seal_vector}};
+  \node at ([xshift=-0.07\paperwidth,yshift=-4.65cm]current page.north east)
+    {\titlelogocirc{7}{4.6}{figures/logos/llnl_icon_black}};
+  \node at ([xshift=-0.07\paperwidth,yshift=-12.15cm]current page.north east)
+    {\titlelogocirc{7}{6.4}{figures/logos/MTV-logo-color}};
 \end{tikzpicture}
 
 \vspace{-0.15cm}
 
 \begin{columns}[c,totalwidth=0.98\paperwidth]
-  % --- left wing
+  % --- left wing (logo lives in the banner overlay above)
   \begin{column}{0.14\paperwidth}
-    \centering
-    \titlelogo{14}{14}{figures/logos/university_of_hawaii_at_manoa_logo-freelogovectors.net_}
   \end{column}
 
   % --- center
@@ -93,11 +99,8 @@
     \input{content/title}
   \end{column}
 
-  % --- right wing
+  % --- right wing (logos live in the banner overlay above)
   \begin{column}{0.14\paperwidth}
-    \centering
-    \titlelogo{14}{6.75}{figures/logos/llnl}\\[0.5cm]
-    \titlelogo{14}{6.75}{figures/logos/MTV-logo-color}
   \end{column}
 \end{columns}
 

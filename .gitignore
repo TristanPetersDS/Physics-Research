@@ -48,3 +48,6 @@ fid_10M_unfiltered_*.npy
 
 # --- Extracted raw 10M ASCII (tens of GB; re-extractable from the tarball) -
 10M_raw/
+
+# --- Local build-path shim (poster QR path expects parent dir name) -------
+UHNeutrinoGroup/Nu2026/poster/nu2026_poster
