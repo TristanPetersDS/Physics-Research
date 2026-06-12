@@ -57,9 +57,19 @@ for center, bd in [(True, "data_10M_detected"), (False, "data_10M_usable")]:
             # points -- the statistics simply do not exist. The usable cut
             # shrinks the pool (dx=150 keeps only ~7.7%, ~691k of 9M), so
             # usable/dx=150 caps at n=300000 (2n=600k < 691k).
+            #
+            # self.data is loaded by readData() which runs ONLY on rank 0, so
+            # check the pool there and broadcast the skip decision -- reading
+            # pp.data on a worker raises AttributeError and strands rank 0 in
+            # the directionAlgorithm bcast.
             k = "detected" if center else "usable"
-            pool = len(pp.data[k]["main"]) + len(pp.data[k]["buffer"])
-            if 2 * n > pool:
+            if pp.rank == 0:
+                pool = len(pp.data[k]["main"]) + len(pp.data[k]["buffer"])
+                skip = 2 * n > pool
+            else:
+                pool, skip = None, None
+            skip = pp.comm.bcast(skip, root=0)
+            if skip:
                 if pp.rank == 0:
                     print(f"[skip] {bd} dx={dx} n={n}: needs 2n={2 * n:,} > pool {pool:,}", flush=True)
                 continue
