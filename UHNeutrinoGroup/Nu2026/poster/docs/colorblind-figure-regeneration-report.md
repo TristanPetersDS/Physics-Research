@@ -98,3 +98,30 @@ set to vermillion `#D55E00` — a one-line change, flagged here rather than made
   original `DeltaPhiTable_extra_col.txt` for detector params, overrides only the
   colours (no Paper A data file modified).
 - `parallel/cvd_validate.py` — the CVD/ΔE validation above.
+
+## Follow-up: in-diagram LaTeX/TikZ annotation colours (2026-06-12)
+
+The blue/red used *inside* the LaTeX-drawn diagrams and figure keys was swapped to
+the Okabe-Ito colours so the annotations match the recoloured plots and pick up
+the same colourblind-safe pair. Two new colours are defined in
+`config/_preamble.tex`: `OkabeBlue` `#0072B2`, `Vermillion` `#D55E00`.
+
+- **Fig 8 keys** (`block5.tex`): the per-panel key `\textcolor{blue}{ϑ_min}` /
+  `\textcolor{red}{ϑ_fit}` → `OkabeBlue` / `Vermillion`, now matching the plot's
+  blue data line and vermillion fit line exactly (resolves the earlier caveat).
+- **Fig 5 a & b** (`block4.tex`): all `\color{blue}` (rotated axes, MC reference
+  vectors/arcs) → `OkabeBlue`; `\color{red}` (experimental vector + θ_ν^exp
+  label) → `Vermillion`.
+
+Verified CVD-safe: among `{OkabeBlue, Vermillion, black, gray}` the minimum
+pairwise ΔE is 27.1 in all CVD types (closest pair black/gray, luminance-only);
+the **OkabeBlue vs Vermillion** pair is ΔE = 91.9 (vs pure blue/red, which is the
+weak point for protanopes). Poster recompiles clean. Changes are colour-only.
+
+### Not changed — Fig 4 / block3 (flagged)
+`block3.tex` colours the IBD reaction text `{\color{red}e^+}` and
+`{\color{green}γγ}` to match the RAT-PAC 2 event-display **image** (Fig 4:
+positron red, γ green). That is a genuine red–green pair, but recolouring the
+text without re-rendering the event-display image would desync them. It is a
+red–green case (not the blue/red requested) and needs the Fig 4 image itself
+regenerated with colourblind track colours — left for a separate pass.
