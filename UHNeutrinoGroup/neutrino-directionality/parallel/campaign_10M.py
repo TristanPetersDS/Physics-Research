@@ -50,6 +50,19 @@ for center, bd in [(True, "data_10M_detected"), (False, "data_10M_usable")]:
                 vertices_file=V10, captures_file=C10,
                 bd=bd, process=False, load=True,
             )
+            # A single direction estimate samples 2n DISTINCT events
+            # (sampleData draws with replace=False). If 2n exceeds the available
+            # pool the draw is impossible: rank 0 raises inside np.random.choice
+            # and the other ranks deadlock busy-waiting in the bcast. Skip such
+            # points -- the statistics simply do not exist. The usable cut
+            # shrinks the pool (dx=150 keeps only ~7.7%, ~691k of 9M), so
+            # usable/dx=150 caps at n=300000 (2n=600k < 691k).
+            k = "detected" if center else "usable"
+            pool = len(pp.data[k]["main"]) + len(pp.data[k]["buffer"])
+            if 2 * n > pool:
+                if pp.rank == 0:
+                    print(f"[skip] {bd} dx={dx} n={n}: needs 2n={2 * n:,} > pool {pool:,}", flush=True)
+                continue
             pp.calcUncertainty(iterations=ITERATIONS, vary="counts", center=center)
             if pp.rank == 0:
                 print(f"[done] {bd} dx={dx} gs={gs} n={n}", flush=True)
